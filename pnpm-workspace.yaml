@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - 'sharp'
+  - 'simple-git-hooks'
+  - 'unrs-resolver'
