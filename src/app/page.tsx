@@ -2,10 +2,10 @@
 'use client'
 import { useChat } from '@ai-sdk/react'
 import { createEneo } from 'eneo'
-import { useAtom } from 'jotai/react'
+import { useAtomValue } from 'jotai/react'
 import { Fragment, useState } from 'react'
 import { toast } from 'sonner'
-import { apiKeyAtom } from '~/atoms/api-key'
+import { openrouterAtom } from '~/atoms/openrouter'
 import {
   Conversation,
   ConversationContent,
@@ -31,14 +31,14 @@ import {
   SourcesContent,
   SourcesTrigger,
 } from '~/components/ai-elements/source'
-import { Input } from '~/components/ui/input'
+import { Models } from './components/models'
 import type { EneoReturn } from 'eneo'
 import type { WorkerFunctions } from '~/worker'
 
 export default function Page() {
   const rpc = useRef<EneoReturn<WorkerFunctions>>(null)
   const [input, setInput] = useState('')
-  const [apiKey, setApiKey] = useAtom(apiKeyAtom)
+  const openrouter = useAtomValue(openrouterAtom)
 
   const { messages, sendMessage, status } = useChat({
     transport: {
@@ -74,7 +74,7 @@ export default function Page() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!apiKey.trim()) {
+    if (!openrouter.apiKey.trim()) {
       toast.error('Please enter an API key', {
         description: 'You can get one from OpenRouter',
       })
@@ -87,7 +87,8 @@ export default function Page() {
         {
           body: {
             model: 'openai/gpt-oss-20b:free',
-            apiKey,
+            apiKey: openrouter.apiKey,
+            baseURL: openrouter.baseURL,
           },
         },
       )
@@ -121,14 +122,8 @@ export default function Page() {
 
   return (
     <div className='relative mx-auto size-full h-screen max-w-4xl p-6'>
-      <div className='fixed top-2 left-2 flex items-center gap-2'>
-        <Input
-          placeholder='API Key'
-          value={apiKey}
-          type='password'
-          onChange={(e) => setApiKey(e.target.value)}
-        />
-      </div>
+      <Models />
+
       <div className='flex h-full flex-col'>
         <Conversation className='h-full'>
           <ConversationContent>

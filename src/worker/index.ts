@@ -13,12 +13,13 @@ const workerFunctions = {
     body: {
       model: string
       apiKey: string
+      baseURL?: string
     }
   }) {
-    const { model, apiKey } = body
+    const { model, apiKey, baseURL = 'https://openrouter.ai/api/v1' } = body
 
     const openRouter = createOpenRouter({
-      baseURL: 'https://openrouter.ai/api/v1',
+      baseURL,
       apiKey,
     })
 
