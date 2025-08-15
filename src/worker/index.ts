@@ -4,16 +4,26 @@ import { convertToModelMessages, streamText } from 'ai'
 import { createEneo } from 'eneo'
 import type { UIMessage } from 'ai'
 
-const openRouter = createOpenRouter({
-  baseURL: 'https://openrouter.ai/api/v1',
-  apiKey:
-    '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',
-})
-
 const workerFunctions = {
-  async *chat(messages: UIMessage[]) {
+  async *chat({
+    messages,
+    body,
+  }: {
+    messages: UIMessage[]
+    body: {
+      model: string
+      apiKey: string
+    }
+  }) {
+    const { model, apiKey } = body
+
+    const openRouter = createOpenRouter({
+      baseURL: 'https://openrouter.ai/api/v1',
+      apiKey,
+    })
+
     const result = streamText({
-      model: openRouter('openai/gpt-oss-20b:free'),
+      model: openRouter(model),
       prompt: convertToModelMessages(messages),
     })
 
