@@ -1,5 +1,8 @@
+/* eslint-disable no-restricted-globals */
 import { createOpenRouter } from '@openrouter/ai-sdk-provider'
-import { generateText } from 'ai'
+import { convertToModelMessages, streamText } from 'ai'
+import { createEneo } from 'eneo'
+import type { UIMessage } from 'ai'
 
 const openRouter = createOpenRouter({
   baseURL: 'https://openrouter.ai/api/v1',
@@ -7,16 +10,26 @@ const openRouter = createOpenRouter({
     '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',
 })
 
-async function main() {
-  const result = await generateText({
-    model: openRouter('openai/gpt-oss-20b:free'),
-    prompt: 'Hello, world!',
-  })
+const workerFunctions = {
+  async *chat(messages: UIMessage[]) {
+    const result = streamText({
+      model: openRouter('openai/gpt-oss-20b:free'),
+      prompt: convertToModelMessages(messages),
+    })
 
-  console.log(result)
+    const iterator = result.toUIMessageStream()
+
+    for await (const chunk of iterator) {
+      yield chunk
+    }
+  },
 }
 
-// eslint-disable-next-line no-restricted-globals
-self.addEventListener('message', () => {
-  main()
+export type WorkerFunctions = typeof workerFunctions
+
+createEneo(workerFunctions, {
+  post: (data) => self.postMessage(data),
+  on: (fn) => self.addEventListener('message', fn),
+  off: (fn) => self.removeEventListener('message', fn),
+  deserialize: (e) => e.data,
 })

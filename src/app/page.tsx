@@ -1,30 +1,190 @@
 'use client'
-import { ThemeSwitcher } from '~/components/theme-switcher'
-import { isBrowser } from '~/lib/is-browser'
-import Counter from './components/counter'
 
-export default function Home() {
-  const worker = useRef<Worker | null>(
-    isBrowser
-      ? new Worker(new URL('../worker/index.ts', import.meta.url))
-      : null,
-  )
+import { useChat } from '@ai-sdk/react'
+import { createEneo } from 'eneo'
+import { GlobeIcon } from 'lucide-react'
+import { Fragment, useState } from 'react'
+import {
+  Conversation,
+  ConversationContent,
+  ConversationScrollButton,
+} from '~/components/ai-elements/conversation'
+import { Loader } from '~/components/ai-elements/loader'
+import { Message, MessageContent } from '~/components/ai-elements/message'
+import {
+  PromptInput,
+  PromptInputButton,
+  PromptInputModelSelect,
+  PromptInputModelSelectContent,
+  PromptInputModelSelectItem,
+  PromptInputModelSelectTrigger,
+  PromptInputModelSelectValue,
+  PromptInputSubmit,
+  PromptInputTextarea,
+  PromptInputToolbar,
+  PromptInputTools,
+} from '~/components/ai-elements/prompt-input'
+import {
+  Reasoning,
+  ReasoningContent,
+  ReasoningTrigger,
+} from '~/components/ai-elements/reasoning'
+import { Response } from '~/components/ai-elements/response'
+import {
+  Source,
+  Sources,
+  SourcesContent,
+  SourcesTrigger,
+} from '~/components/ai-elements/source'
+import type { EneoReturn } from 'eneo'
+import type { WorkerFunctions } from '~/worker'
+
+export default function Page() {
+  const rpc = useRef<EneoReturn<WorkerFunctions>>(null)
+  const [input, setInput] = useState('')
+  const { messages, sendMessage, status } = useChat({
+    transport: {
+      sendMessages: async (options) => {
+        const iter = rpc.current?.chat.asAsyncIter(options.messages)
+        if (!iter) {
+          throw new Error('worker not initialized')
+        }
+
+        return new ReadableStream({
+          async pull(controller) {
+            const { done, value } = await iter.next()
+
+            if (done) {
+              controller.close()
+            } else {
+              controller.enqueue(value)
+            }
+
+            controller.close()
+          },
+          async cancel() {
+            await iter.return?.()
+          },
+        })
+      },
+      reconnectToStream: async () => {
+        throw new Error('Unsupported')
+      },
+    },
+  })
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (input.trim()) {
+      sendMessage({ text: input })
+      setInput('')
+    }
+  }
 
   useEffect(() => {
-    if (worker.current) {
-      worker.current.postMessage('hello')
+    const worker = new Worker(new URL('../worker/index.ts', import.meta.url))
+
+    rpc.current = createEneo(
+      {},
+      {
+        post: (data) => worker.postMessage(data),
+        // eslint-disable-next-line react-web-api/no-leaked-event-listener
+        on: (fn) => worker.addEventListener('message', fn),
+        off: (fn) => worker.removeEventListener('message', fn),
+        deserialize: (e) => e.data,
+      },
+    )
+
+    const cleanup = () => {
+      rpc.current?.$close()
+      worker.terminate()
+    }
+
+    return () => {
+      cleanup()
     }
   }, [])
 
   return (
-    <main className='flex h-full flex-col items-center justify-center gap-y-4'>
-      <motion.div
-        className='size-16 rounded-md border bg-blue-600'
-        whileHover={{ scale: 1.1, rotate: '360deg' }}
-      />
-      <Counter />
+    <div className='relative mx-auto size-full h-screen max-w-4xl p-6'>
+      <div className='flex h-full flex-col'>
+        <Conversation className='h-full'>
+          <ConversationContent>
+            {messages.map((message) => (
+              <div key={message.id}>
+                {message.role === 'assistant' && (
+                  <Sources>
+                    {message.parts.map((part, i) => {
+                      switch (part.type) {
+                        case 'source-url':
+                          return (
+                            <Fragment key={message.id}>
+                              <SourcesTrigger
+                                count={
+                                  message.parts.filter(
+                                    (part) => part.type === 'source-url',
+                                  ).length
+                                }
+                              />
+                              <SourcesContent key={`${message.id}-${i}`}>
+                                <Source
+                                  key={`${message.id}-${i}`}
+                                  href={part.url}
+                                  title={part.url}
+                                />
+                              </SourcesContent>
+                            </Fragment>
+                          )
+                        default:
+                          return null
+                      }
+                    })}
+                  </Sources>
+                )}
+                <Message from={message.role} key={message.id}>
+                  <MessageContent>
+                    {message.parts.map((part, i) => {
+                      switch (part.type) {
+                        case 'text':
+                          return (
+                            <Response key={`${message.id}-${i}`}>
+                              {part.text}
+                            </Response>
+                          )
+                        case 'reasoning':
+                          return (
+                            <Reasoning
+                              key={`${message.id}-${i}`}
+                              className='w-full'
+                              isStreaming={status === 'streaming'}
+                            >
+                              <ReasoningTrigger />
+                              <ReasoningContent>{part.text}</ReasoningContent>
+                            </Reasoning>
+                          )
+                        default:
+                          return null
+                      }
+                    })}
+                  </MessageContent>
+                </Message>
+              </div>
+            ))}
+            {status === 'submitted' && <Loader />}
+          </ConversationContent>
+          <ConversationScrollButton />
+        </Conversation>
 
-      <ThemeSwitcher />
-    </main>
+        <PromptInput onSubmit={handleSubmit} className='mt-4'>
+          <PromptInputTextarea
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
+          />
+          <PromptInputToolbar className='justify-end'>
+            <PromptInputSubmit disabled={!input} status={status} />
+          </PromptInputToolbar>
+        </PromptInput>
+      </div>
+    </div>
   )
 }
