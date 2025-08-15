@@ -1,8 +1,12 @@
 /* eslint-disable no-restricted-globals */
+import { createDeepSeek } from '@ai-sdk/deepseek'
 import { createOpenRouter } from '@openrouter/ai-sdk-provider'
 import { convertToModelMessages, streamText } from 'ai'
 import { createEneo } from 'eneo'
+import { match } from 'ts-pattern'
+import { modelTypes } from '~/atoms/models-settings'
 import type { UIMessage } from 'ai'
+import type { ModelType } from '~/atoms/models-settings'
 
 const workerFunctions = {
   async *chat({
@@ -14,17 +18,33 @@ const workerFunctions = {
       model: string
       apiKey: string
       baseURL?: string
+      type: ModelType
     }
   }) {
-    const { model, apiKey, baseURL = 'https://openrouter.ai/api/v1' } = body
-
-    const openRouter = createOpenRouter({
-      baseURL,
+    const {
+      type,
+      model,
       apiKey,
-    })
+      baseURL = 'https://openrouter.ai/api/v1',
+    } = body
+
+    const modelInstance = match(type)
+      .with(modelTypes.OpenRouter, () =>
+        createOpenRouter({
+          baseURL,
+          apiKey,
+        })(model),
+      )
+      .with(modelTypes.DeepSeek, () =>
+        createDeepSeek({
+          baseURL,
+          apiKey,
+        })(model),
+      )
+      .exhaustive()
 
     const result = streamText({
-      model: openRouter(model),
+      model: modelInstance,
       prompt: convertToModelMessages(messages),
     })
 

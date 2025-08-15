@@ -5,7 +5,7 @@ import { createEneo } from 'eneo'
 import { useAtomValue } from 'jotai/react'
 import { Fragment, useState } from 'react'
 import { toast } from 'sonner'
-import { openrouterAtom } from '~/atoms/openrouter'
+import { modelsSettingsAtom } from '~/atoms/models-settings'
 import {
   Conversation,
   ConversationContent,
@@ -33,19 +33,28 @@ import {
 } from '~/components/ai-elements/source'
 import { Models } from './components/models'
 import type { EneoReturn } from 'eneo'
+import type { ModelType } from '~/atoms/models-settings'
 import type { WorkerFunctions } from '~/worker'
 
 export default function Page() {
   const rpc = useRef<EneoReturn<WorkerFunctions>>(null)
   const [input, setInput] = useState('')
-  const openrouter = useAtomValue(openrouterAtom)
+  const modelsSettings = useAtomValue(modelsSettingsAtom)
+  const currentModel = modelsSettings.models.find(
+    (m) => m.id === modelsSettings.id,
+  )
 
   const { messages, sendMessage, status } = useChat({
     transport: {
       sendMessages: async (options) => {
         const iter = rpc.current?.chat.asAsyncIter({
           messages: options.messages,
-          body: options.body as { model: string; apiKey: string },
+          body: options.body as {
+            model: string
+            apiKey: string
+            baseURL?: string
+            type: ModelType
+          },
         })
         if (!iter) {
           throw new Error('worker not initialized')
@@ -74,7 +83,7 @@ export default function Page() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!openrouter.apiKey.trim()) {
+    if (!currentModel?.apiKey.trim()) {
       toast.error('Please enter an API key', {
         description: 'You can get one from OpenRouter',
       })
@@ -86,9 +95,10 @@ export default function Page() {
         { text: input },
         {
           body: {
-            model: 'openai/gpt-oss-20b:free',
-            apiKey: openrouter.apiKey,
-            baseURL: openrouter.baseURL,
+            model: currentModel.model,
+            apiKey: currentModel.apiKey,
+            baseURL: currentModel.baseURL,
+            type: currentModel.type,
           },
         },
       )

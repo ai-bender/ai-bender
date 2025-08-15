@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-context-value */
 'use client'
 
 import useEmblaCarousel from 'embla-carousel-react'
@@ -62,9 +61,7 @@ function Carousel({
 
   const onSelect = React.useCallback((api: CarouselApi) => {
     if (!api) return
-    // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
     setCanScrollPrev(api.canScrollPrev())
-    // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
     setCanScrollNext(api.canScrollNext())
   }, [])
 
@@ -239,6 +236,4 @@ export {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  // eslint-disable-next-line react-refresh/only-export-components
-  useCarousel,
 }
