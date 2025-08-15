@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unstable-context-value */
+/* eslint-disable react-hooks-extra/no-direct-set-state-in-use-effect */
 'use client'
 
 import useEmblaCarousel from 'embla-carousel-react'
@@ -236,4 +238,6 @@ export {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  // eslint-disable-next-line react-refresh/only-export-components
+  useCarousel,
 }
