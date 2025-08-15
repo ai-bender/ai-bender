@@ -1,8 +1,7 @@
+/* eslint-disable react/no-array-index-key */
 'use client'
-
 import { useChat } from '@ai-sdk/react'
 import { createEneo } from 'eneo'
-import { GlobeIcon } from 'lucide-react'
 import { Fragment, useState } from 'react'
 import {
   Conversation,
@@ -13,16 +12,9 @@ import { Loader } from '~/components/ai-elements/loader'
 import { Message, MessageContent } from '~/components/ai-elements/message'
 import {
   PromptInput,
-  PromptInputButton,
-  PromptInputModelSelect,
-  PromptInputModelSelectContent,
-  PromptInputModelSelectItem,
-  PromptInputModelSelectTrigger,
-  PromptInputModelSelectValue,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputToolbar,
-  PromptInputTools,
 } from '~/components/ai-elements/prompt-input'
 import {
   Reasoning,
@@ -59,8 +51,6 @@ export default function Page() {
             } else {
               controller.enqueue(value)
             }
-
-            controller.close()
           },
           async cancel() {
             await iter.return?.()
@@ -118,7 +108,7 @@ export default function Page() {
                       switch (part.type) {
                         case 'source-url':
                           return (
-                            <Fragment key={message.id}>
+                            <Fragment key={`${message.id}-${i}`}>
                               <SourcesTrigger
                                 count={
                                   message.parts.filter(

@@ -116,6 +116,7 @@ export const PromptInputButton = ({
   ...props
 }: PromptInputButtonProps) => {
   const newSize =
+    // eslint-disable-next-line react/no-children-count
     (size ?? Children.count(props.children) > 1) ? 'default' : 'icon'
 
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-context-value */
 'use client'
 
 import { ChevronDownIcon } from 'lucide-react'
@@ -171,6 +172,7 @@ export const WebPreviewBody = ({
         className={cn('size-full', className)}
         src={(src ?? url) || undefined}
         title='Preview'
+        // eslint-disable-next-line react-dom/no-unsafe-iframe-sandbox
         sandbox='allow-scripts allow-same-origin allow-forms allow-popups allow-presentation'
         {...props}
       />
@@ -187,9 +189,15 @@ export type WebPreviewConsoleProps = ComponentProps<'div'> & {
   }>
 }
 
+const emptyArray: Array<{
+  level: 'log' | 'warn' | 'error'
+  message: string
+  timestamp: Date
+}> = []
+
 export const WebPreviewConsole = ({
   className,
-  logs = [],
+  logs = emptyArray,
   children,
   ...props
 }: WebPreviewConsoleProps) => {
@@ -228,6 +236,7 @@ export const WebPreviewConsole = ({
           ) : (
             logs.map((log, index) => (
               <div
+                // eslint-disable-next-line react/no-array-index-key
                 key={`${log.timestamp.getTime()}-${index}`}
                 className={cn(
                   'text-xs',

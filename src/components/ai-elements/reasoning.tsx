@@ -65,10 +65,12 @@ export const Reasoning = memo(
     useEffect(() => {
       if (isStreaming) {
         if (startTime === null) {
+          // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
           setStartTime(Date.now())
         }
       } else if (startTime !== null) {
         setDuration(Math.round((Date.now() - startTime) / 1000))
+        // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
         setStartTime(null)
       }
     }, [isStreaming, startTime, setDuration])
@@ -92,6 +94,7 @@ export const Reasoning = memo(
     }
 
     return (
+      // eslint-disable-next-line react/no-unstable-context-value
       <ReasoningContext value={{ isStreaming, isOpen, setIsOpen, duration }}>
         <Collapsible
           className={cn('not-prose mb-4', className)}

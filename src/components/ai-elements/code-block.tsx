@@ -34,6 +34,7 @@ export const CodeBlock = ({
   children,
   ...props
 }: CodeBlockProps) => (
+  // eslint-disable-next-line react/no-unstable-context-value
   <CodeBlockContext value={{ code }}>
     <div
       className={cn(
