@@ -8,7 +8,7 @@ export const modelTypes = {
 export type ModelType = (typeof modelTypes)[keyof typeof modelTypes]
 
 export interface Model {
-  id: number
+  id: string
   type: ModelType
   name: string
   model: string
@@ -25,15 +25,15 @@ export const defaultModel: Omit<Model, 'id'> = {
 }
 
 export const modelsSettingsAtom = atomWithStorage<{
-  id: number
+  id: string | undefined
   models: Model[]
 }>('models-settings', {
-  id: 0,
+  id: undefined,
   models: [
     {
       ...defaultModel,
       type: modelTypes.OpenRouter,
-      id: new Date().getTime(),
+      id: new Date().getTime().toString(),
     },
   ],
 })
