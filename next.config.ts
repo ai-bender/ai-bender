@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
   },
+  typedRoutes: true,
   webpack: (config) => {
     config.plugins.push(
       AutoImport({
