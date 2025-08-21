@@ -1,3 +1,4 @@
+'use client'
 import { useAtom } from 'jotai/react'
 import { CopyIcon, PlusIcon, SettingsIcon, TrashIcon } from 'lucide-react'
 import { useState } from 'react'
@@ -123,13 +124,6 @@ export const Models = () => {
     setIsDialogOpen(false)
   }
 
-  const enableModel = (id: string) => {
-    setModelsSettings({
-      ...modelsSettings,
-      id,
-    })
-  }
-
   const deleteModel = (id: string) => {
     const willDeleteModel = modelsSettings.models.find((m) => m.id === id)
 
@@ -173,26 +167,7 @@ export const Models = () => {
   }
 
   return (
-    <div className='fixed top-2 left-2 flex flex-col items-start gap-2'>
-      <Select
-        value={modelsSettings.id}
-        onValueChange={(value) => {
-          enableModel(value)
-        }}
-      >
-        <SelectTrigger className='min-w-30'>
-          <SelectValue placeholder='Select a model' />
-        </SelectTrigger>
-        {modelsSettings.models.length ? (
-          <SelectContent>
-            {modelsSettings.models.map((model) => (
-              <SelectItem key={model.id} value={model.id.toString()}>
-                {model.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        ) : null}
-      </Select>
+    <div className='flex flex-col items-start gap-2 pt-2 pl-2'>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
           <Button variant='outline' size='icon'>

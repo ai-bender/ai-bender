@@ -33,11 +33,13 @@
     "birpc",
     "eneo",
     "lingui",
+    "nanoevents",
     "nextui",
     "openrouter",
     "precache",
     "serwist",
     "shadcn",
+    "sonner",
     "turbopack"
   ]
 }
