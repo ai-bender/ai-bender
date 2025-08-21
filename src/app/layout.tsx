@@ -5,10 +5,10 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://starter-next-app-two.vercel.app/'),
-  title: 'AI Playground',
-  description: 'AI Playground',
+  title: 'AI Bender',
+  description: 'AI Bender',
   appleWebApp: {
-    title: 'AI Playground',
+    title: 'AI Bender',
   },
   icons: [
     {
