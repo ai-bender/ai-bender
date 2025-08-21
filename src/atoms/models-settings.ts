@@ -3,6 +3,12 @@ import { atomWithStorage } from 'jotai/utils'
 export const modelTypes = {
   OpenRouter: 'OpenRouter',
   DeepSeek: 'DeepSeek',
+  Xai: 'Xai',
+  Vercel: 'Vercel',
+  Anthropic: 'Anthropic',
+  Groq: 'Groq',
+  Google: 'Google',
+  // Luma: 'Luma',
 } as const
 
 export type ModelType = (typeof modelTypes)[keyof typeof modelTypes]

@@ -1,5 +1,10 @@
 /* eslint-disable no-restricted-globals */
+import { createAnthropic } from '@ai-sdk/anthropic'
 import { createDeepSeek } from '@ai-sdk/deepseek'
+import { createGoogleGenerativeAI } from '@ai-sdk/google'
+import { createGroq } from '@ai-sdk/groq'
+import { createVercel } from '@ai-sdk/vercel'
+import { createXai } from '@ai-sdk/xai'
 import { createOpenRouter } from '@openrouter/ai-sdk-provider'
 import { convertToModelMessages, streamText } from 'ai'
 import { createEneo } from 'eneo'
@@ -37,6 +42,36 @@ const workerFunctions = {
       )
       .with(modelTypes.DeepSeek, () =>
         createDeepSeek({
+          baseURL,
+          apiKey,
+        })(model),
+      )
+      .with(modelTypes.Xai, () =>
+        createXai({
+          baseURL,
+          apiKey,
+        })(model),
+      )
+      .with(modelTypes.Vercel, () =>
+        createVercel({
+          baseURL,
+          apiKey,
+        })(model),
+      )
+      .with(modelTypes.Anthropic, () =>
+        createAnthropic({
+          baseURL,
+          apiKey,
+        })(model),
+      )
+      .with(modelTypes.Groq, () =>
+        createGroq({
+          baseURL,
+          apiKey,
+        })(model),
+      )
+      .with(modelTypes.Google, () =>
+        createGoogleGenerativeAI({
           baseURL,
           apiKey,
         })(model),
