@@ -1,21 +1,10 @@
 import { atomWithStorage } from 'jotai/utils'
-
-export const modelTypes = {
-  OpenRouter: 'OpenRouter',
-  DeepSeek: 'DeepSeek',
-  Xai: 'Xai',
-  Vercel: 'Vercel',
-  Anthropic: 'Anthropic',
-  Groq: 'Groq',
-  Google: 'Google',
-  // Luma: 'Luma',
-} as const
-
-export type ModelType = (typeof modelTypes)[keyof typeof modelTypes]
+import { Models } from '~/models'
+import type { ModelName } from '~/models'
 
 export interface Model {
   id: string
-  type: ModelType
+  type: ModelName
   name: string
   model: string
   baseURL: string
@@ -24,7 +13,7 @@ export interface Model {
 
 export const defaultModel: Omit<Model, 'id'> = {
   name: 'OpenRouter',
-  type: modelTypes.OpenRouter,
+  type: Models.OpenRouter.name,
   baseURL: 'https://openrouter.ai/api/v1',
   model: 'openai/gpt-oss-20b:free',
   apiKey: '',
@@ -38,7 +27,7 @@ export const modelsSettingsAtom = atomWithStorage<{
   models: [
     {
       ...defaultModel,
-      type: modelTypes.OpenRouter,
+      type: Models.OpenRouter.name,
       id: new Date().getTime().toString(),
     },
   ],
