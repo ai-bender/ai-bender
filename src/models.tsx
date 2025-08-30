@@ -155,6 +155,7 @@ export const xai = createModel<
     'grok-2-latest': { id: 'grok-2-latest' },
     'grok-vision-beta': { id: 'grok-vision-beta' },
     'grok-beta': { id: 'grok-beta' },
+    'grok-code-fast-1': { id: 'grok-code-fast-1' },
   },
   image: {
     'grok-2-image': { id: 'grok-2-image' },
@@ -272,6 +273,7 @@ export const google = createModel<
     'gemini-exp-1206': { id: 'gemini-exp-1206' },
     'gemma-3-12b-it': { id: 'gemma-3-12b-it' },
     'gemma-3-27b-it': { id: 'gemma-3-27b-it' },
+    'gemini-2.5-flash-image-preview': { id: 'gemini-2.5-flash-image-preview' },
   },
   image: {
     'imagen-3.0-generate-002': { id: 'imagen-3.0-generate-002' },
