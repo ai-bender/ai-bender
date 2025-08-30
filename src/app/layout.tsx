@@ -43,6 +43,13 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
+      <head>
+        <script
+          defer
+          src='https://umami.aiwan.run/script.js'
+          data-website-id='f692ae4c-5497-4318-a78b-6fa542cd744a'
+        />
+      </head>
       <body>
         <Providers>{children}</Providers>
         <Toaster />
