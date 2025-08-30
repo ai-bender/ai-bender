@@ -1,4 +1,5 @@
 'use client'
+import { mapValues } from 'es-toolkit'
 import { useAtom } from 'jotai/react'
 import { CopyIcon, PlusIcon, SettingsIcon, TrashIcon } from 'lucide-react'
 import { useState } from 'react'
@@ -99,13 +100,19 @@ export const ModelsDialog = () => {
 
   const addModel = () => {
     const newModelWithId = {
-      ...defaultModel,
       id: new Date().getTime().toString(),
-      name: newModel.name || `Model ${modelsSettings.models.length + 1}`,
-      baseURL: newModel.baseURL,
-      apiKey: newModel.apiKey,
-      model: newModel.model,
-    }
+      ...mapValues(
+        {
+          type: newModel.type,
+          name: newModel.name || `Model ${modelsSettings.models.length + 1}`,
+          baseURL: newModel.baseURL,
+          apiKey: newModel.apiKey,
+          model: newModel.model,
+        },
+        (value, key) => value || defaultModel[key],
+      ),
+    } as Model
+
     setModelsSettings({
       ...modelsSettings,
       id: newModelWithId.id,

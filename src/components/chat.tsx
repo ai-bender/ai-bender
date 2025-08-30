@@ -39,7 +39,7 @@ import {
   Sources,
   SourcesContent,
   SourcesTrigger,
-} from '~/components/ai-elements/source'
+} from '~/components/ai-elements/sources'
 import { inputEmitter } from '~/events/input'
 import { useEffectEvent } from '~/hooks/use-effect-event'
 import type { EneoReturn } from 'eneo'

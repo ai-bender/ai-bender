@@ -1,14 +1,12 @@
-/* eslint-disable react-hooks-extra/no-direct-set-state-in-use-effect */
 'use client'
 
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
-import * as React from 'react'
+import { createContext, use, useCallback, useEffect, useState } from 'react'
 import { Badge } from '~/components/ui/badge'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  useCarousel,
 } from '~/components/ui/carousel'
 import {
   HoverCard,
@@ -17,6 +15,7 @@ import {
 } from '~/components/ui/hover-card'
 import { cn } from '~/lib/utils'
 import type { ComponentProps } from 'react'
+import type { CarouselApi } from '~/components/ui/carousel'
 
 export type InlineCitationProps = ComponentProps<'span'>
 
@@ -45,10 +44,10 @@ export const InlineCitationText = ({
 export type InlineCitationCardProps = ComponentProps<typeof HoverCard>
 
 export const InlineCitationCard = (props: InlineCitationCardProps) => (
-  <HoverCard openDelay={0} closeDelay={0} {...props} />
+  <HoverCard closeDelay={0} openDelay={0} {...props} />
 )
 
-export type InlineCitationCardTriggerProps = ComponentProps<'button'> & {
+export type InlineCitationCardTriggerProps = ComponentProps<typeof Badge> & {
   sources: string[]
 }
 
@@ -59,8 +58,8 @@ export const InlineCitationCardTrigger = ({
 }: InlineCitationCardTriggerProps) => (
   <HoverCardTrigger asChild>
     <Badge
-      variant='secondary'
       className={cn('ml-1 rounded-full', className)}
+      variant='secondary'
       {...props}
     >
       {sources.length ? (
@@ -84,14 +83,30 @@ export const InlineCitationCardBody = ({
   <HoverCardContent className={cn('relative w-80 p-0', className)} {...props} />
 )
 
+const CarouselApiContext = createContext<CarouselApi | undefined>(undefined)
+
+const useCarouselApi = () => {
+  const context = use(CarouselApiContext)
+  return context
+}
+
 export type InlineCitationCarouselProps = ComponentProps<typeof Carousel>
 
 export const InlineCitationCarousel = ({
   className,
+  children,
   ...props
-}: InlineCitationCarouselProps) => (
-  <Carousel className={cn('w-full', className)} {...props} />
-)
+}: InlineCitationCarouselProps) => {
+  const [api, setApi] = useState<CarouselApi>()
+
+  return (
+    <CarouselApiContext value={api}>
+      <Carousel className={cn('w-full', className)} setApi={setApi} {...props}>
+        {children}
+      </Carousel>
+    </CarouselApiContext>
+  )
+}
 
 export type InlineCitationCarouselContentProps = ComponentProps<'div'>
 
@@ -105,7 +120,10 @@ export const InlineCitationCarouselItem = ({
   className,
   ...props
 }: InlineCitationCarouselItemProps) => (
-  <CarouselItem className={cn('w-full space-y-2 p-4', className)} {...props} />
+  <CarouselItem
+    className={cn('w-full space-y-2 p-4 pl-8', className)}
+    {...props}
+  />
 )
 
 export type InlineCitationCarouselHeaderProps = ComponentProps<'div'>
@@ -130,16 +148,18 @@ export const InlineCitationCarouselIndex = ({
   className,
   ...props
 }: InlineCitationCarouselIndexProps) => {
-  const { api } = useCarousel()
-  const [current, setCurrent] = React.useState(0)
-  const [count, setCount] = React.useState(0)
+  const api = useCarouselApi()
+  const [current, setCurrent] = useState(0)
+  const [count, setCount] = useState(0)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api) {
       return
     }
 
+    // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
     setCount(api.scrollSnapList().length)
+    // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
     setCurrent(api.selectedScrollSnap() + 1)
 
     api.on('select', () => {
@@ -166,9 +186,9 @@ export const InlineCitationCarouselPrev = ({
   className,
   ...props
 }: InlineCitationCarouselPrevProps) => {
-  const { api } = useCarousel()
+  const api = useCarouselApi()
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = useCallback(() => {
     if (api) {
       api.scrollPrev()
     }
@@ -176,10 +196,10 @@ export const InlineCitationCarouselPrev = ({
 
   return (
     <button
-      type='button'
+      aria-label='Previous'
       className={cn('shrink-0', className)}
       onClick={handleClick}
-      aria-label='Previous'
+      type='button'
       {...props}
     >
       <ArrowLeftIcon className='text-muted-foreground size-4' />
@@ -193,9 +213,9 @@ export const InlineCitationCarouselNext = ({
   className,
   ...props
 }: InlineCitationCarouselNextProps) => {
-  const { api } = useCarousel()
+  const api = useCarouselApi()
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = useCallback(() => {
     if (api) {
       api.scrollNext()
     }
@@ -203,10 +223,10 @@ export const InlineCitationCarouselNext = ({
 
   return (
     <button
-      type='button'
+      aria-label='Next'
       className={cn('shrink-0', className)}
       onClick={handleClick}
-      aria-label='Next'
+      type='button'
       {...props}
     >
       <ArrowRightIcon className='text-muted-foreground size-4' />

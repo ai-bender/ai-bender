@@ -6,6 +6,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '~/components/ui/collapsible'
+import { cn } from '~/lib/utils'
 import type { ComponentProps } from 'react'
 
 export type TaskItemFileProps = ComponentProps<'div'>
@@ -17,7 +18,7 @@ export const TaskItemFile = ({
 }: TaskItemFileProps) => (
   <div
     className={cn(
-      'text-foreground bg-secondary inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-xs',
+      'bg-secondary text-foreground inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-xs',
       className,
     )}
     {...props}
@@ -42,11 +43,11 @@ export const Task = ({
   ...props
 }: TaskProps) => (
   <Collapsible
-    defaultOpen={defaultOpen}
     className={cn(
-      'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2',
+      'data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 data-[state=closed]:animate-out data-[state=open]:animate-in',
       className,
     )}
+    defaultOpen={defaultOpen}
     {...props}
   />
 )
@@ -81,7 +82,7 @@ export const TaskContent = ({
 }: TaskContentProps) => (
   <CollapsibleContent
     className={cn(
-      'text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 outline-none',
+      'data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 text-popover-foreground data-[state=closed]:animate-out data-[state=open]:animate-in outline-none',
       className,
     )}
     {...props}

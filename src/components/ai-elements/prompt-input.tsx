@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from '~/components/ui/select'
 import { Textarea } from '~/components/ui/textarea'
+import { cn } from '~/lib/utils'
 import type { ChatStatus } from 'ai'
 import type {
   ComponentProps,
@@ -46,6 +47,11 @@ export const PromptInputTextarea = ({
 }: PromptInputTextareaProps) => {
   const handleKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
     if (e.key === 'Enter') {
+      // Don't submit if IME composition is in progress
+      if (e.nativeEvent.isComposing) {
+        return
+      }
+
       if (e.shiftKey) {
         // Allow newline
         return

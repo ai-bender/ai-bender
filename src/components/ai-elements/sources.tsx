@@ -1,4 +1,3 @@
-/* eslint-disable unused-imports/no-unused-vars */
 'use client'
 
 import { BookIcon, ChevronDownIcon } from 'lucide-react'
@@ -7,6 +6,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '~/components/ui/collapsible'
+import { cn } from '~/lib/utils'
 import type { ComponentProps } from 'react'
 
 export type SourcesProps = ComponentProps<'div'>
@@ -23,7 +23,6 @@ export type SourcesTriggerProps = ComponentProps<typeof CollapsibleTrigger> & {
 }
 
 export const SourcesTrigger = ({
-  className,
   count,
   children,
   ...props
@@ -47,7 +46,7 @@ export const SourcesContent = ({
   <CollapsibleContent
     className={cn(
       'mt-3 flex w-fit flex-col gap-2',
-      'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 outline-none',
+      'data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 data-[state=closed]:animate-out data-[state=open]:animate-in outline-none',
       className,
     )}
     {...props}

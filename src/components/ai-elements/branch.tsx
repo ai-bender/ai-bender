@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-context-value */
 'use client'
 
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
@@ -60,6 +59,7 @@ export const Branch = ({
     handleBranchChange(newBranch)
   }
 
+  // eslint-disable-next-line react/no-unstable-context-value
   const contextValue: BranchContextType = {
     currentBranch,
     totalBranches: branches.length,
@@ -82,11 +82,11 @@ export const Branch = ({
 export type BranchMessagesProps = HTMLAttributes<HTMLDivElement>
 
 export const BranchMessages = ({ children, ...props }: BranchMessagesProps) => {
-  'use no memo'
   const { currentBranch, setBranches, branches } = useBranch()
-  // eslint-disable-next-line react-compiler/react-compiler
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const childrenArray = Array.isArray(children) ? children : [children]
+  const childrenArray = useMemo(
+    () => (Array.isArray(children) ? children : [children]),
+    [children],
+  )
 
   // Use useEffect to update branches when they change
   useEffect(() => {
