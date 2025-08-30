@@ -43,7 +43,7 @@ import {
 import { inputEmitter } from '~/events/input'
 import { useEffectEvent } from '~/hooks/use-effect-event'
 import type { EneoReturn } from 'eneo'
-import type { ModelType } from '~/atoms/models-settings'
+import type { ModelName } from '~/models'
 import type { WorkerFunctions } from '~/worker'
 
 export function Chat() {
@@ -88,7 +88,7 @@ export function Chat() {
             model: string
             apiKey: string
             baseURL?: string
-            type: ModelType
+            type: ModelName
           },
         })
         if (!iter) {

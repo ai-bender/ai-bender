@@ -4,12 +4,12 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from '~/components/ui/resizable'
-import { Models } from './components/models'
+import { ModelsDialog } from './components/models-dialog'
 
 export default function Page() {
   return (
     <div className='relative mx-auto flex size-full h-screen'>
-      <Models />
+      <ModelsDialog />
 
       <div className='flex-1 p-2'>
         <ResizablePanelGroup

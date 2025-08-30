@@ -23,9 +23,15 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^2.0.5",
     "@ai-sdk/deepseek": "^1.0.10",
+    "@ai-sdk/google": "^2.0.7",
+    "@ai-sdk/groq": "^2.0.11",
+    "@ai-sdk/luma": "^1.0.4",
     "@ai-sdk/openai": "^2.0.16",
     "@ai-sdk/react": "^2.0.18",
+    "@ai-sdk/vercel": "^1.0.10",
+    "@ai-sdk/xai": "^2.0.10",
     "@debbl/ahooks": "^0.4.1",
     "@icons-pack/react-simple-icons": "^13.7.0",
     "@openrouter/ai-sdk-provider": "^1.1.2",
