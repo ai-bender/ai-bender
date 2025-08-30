@@ -3,11 +3,7 @@ import { useAtom } from 'jotai/react'
 import { CopyIcon, PlusIcon, SettingsIcon, TrashIcon } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
-import {
-  defaultModel,
-  modelsSettingsAtom,
-  modelTypes,
-} from '~/atoms/models-settings'
+import { defaultModel, modelsSettingsAtom } from '~/atoms/models-settings'
 import { Button } from '~/components/ui/button'
 import {
   Carousel,
@@ -40,14 +36,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '~/components/ui/select'
-import type { Model, ModelType } from '~/atoms/models-settings'
+import { Models } from '~/models'
+import type { Model } from '~/atoms/models-settings'
+import type { ModelName } from '~/models'
 
-export const Models = () => {
+export const ModelsDialog = () => {
   const [modelsSettings, setModelsSettings] = useAtom(modelsSettingsAtom)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const [newModel, setNewModel] = useState<Omit<Model, 'id'>>({
-    type: modelTypes.OpenRouter,
+    type: Models.OpenRouter.name,
     name: '',
     baseURL: '',
     apiKey: '',
@@ -90,7 +88,7 @@ export const Models = () => {
     })
   }
 
-  const setTypeById = (id: string, type: ModelType) => {
+  const setTypeById = (id: string, type: ModelName) => {
     setModelsSettings({
       ...modelsSettings,
       models: modelsSettings.models.map((m) =>
@@ -117,7 +115,7 @@ export const Models = () => {
     setNewModel({
       name: '',
       baseURL: '',
-      type: modelTypes.OpenRouter,
+      type: Models.OpenRouter.name,
       apiKey: '',
       model: '',
     })
@@ -202,7 +200,7 @@ export const Models = () => {
                 onValueChange={(value) =>
                   setNewModel({
                     ...newModel,
-                    type: value as ModelType,
+                    type: value as ModelName,
                   })
                 }
               >
@@ -210,9 +208,9 @@ export const Models = () => {
                   <SelectValue placeholder='Select a type' />
                 </SelectTrigger>
                 <SelectContent>
-                  {Object.entries(modelTypes).map(([key, value]) => (
+                  {Object.entries(Models).map(([key, value]) => (
                     <SelectItem key={key} value={key}>
-                      {value}
+                      {value.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -313,20 +311,18 @@ export const Models = () => {
                           <Select
                             value={model.type}
                             onValueChange={(value) =>
-                              setTypeById(model.id, value as ModelType)
+                              setTypeById(model.id, value as ModelName)
                             }
                           >
                             <SelectTrigger>
                               <SelectValue placeholder='Select a type' />
                             </SelectTrigger>
                             <SelectContent>
-                              {Object.entries(modelTypes).map(
-                                ([key, value]) => (
-                                  <SelectItem key={key} value={key}>
-                                    {value}
-                                  </SelectItem>
-                                ),
-                              )}
+                              {Object.entries(Models).map(([key, value]) => (
+                                <SelectItem key={key} value={key}>
+                                  {value.name}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                         </div>
