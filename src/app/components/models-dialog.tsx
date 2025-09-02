@@ -172,7 +172,7 @@ export const ModelsDialog = () => {
   }
 
   return (
-    <div className='flex flex-col items-start gap-2 pt-2 pl-2'>
+    <div className='flex flex-col items-start gap-2'>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
           <Button variant='outline' size='icon'>
