@@ -34,6 +34,10 @@ const nextConfig: NextConfig = {
             from: 'motion/react-m',
             imports: [['*', 'motion']],
           },
+          {
+            from: '~/db',
+            imports: ['db'],
+          },
         ],
         dts: true,
       }),

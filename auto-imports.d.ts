@@ -8,6 +8,7 @@ export {}
 declare global {
   const cn: typeof import('twl')['cn']
   const createRef: typeof import('react')['createRef']
+  const db: typeof import('~/db')['db']
   const forwardRef: typeof import('react')['forwardRef']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']

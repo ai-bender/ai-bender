@@ -1,10 +1,10 @@
 'use client'
-import { mapValues } from 'es-toolkit'
-import { useAtom } from 'jotai/react'
+import { useLiveQuery } from 'dexie-react-hooks'
+import { mapValues, omit } from 'es-toolkit'
 import { CopyIcon, PlusIcon, SettingsIcon, TrashIcon } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
-import { defaultModel, modelsSettingsAtom } from '~/atoms/models-settings'
+import { defaultModel } from '~/atoms/models-settings'
 import { Button } from '~/components/ui/button'
 import {
   Carousel,
@@ -38,11 +38,16 @@ import {
   SelectValue,
 } from '~/components/ui/select'
 import { Models } from '~/models'
-import type { Model } from '~/atoms/models-settings'
+import type { Model } from '~/db'
 import type { ModelName } from '~/models'
 
 export const ModelsDialog = () => {
-  const [modelsSettings, setModelsSettings] = useAtom(modelsSettingsAtom)
+  const models = useLiveQuery<Model[], Model[]>(
+    () => db.models.toArray(),
+    [],
+    [],
+  )
+
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const [newModel, setNewModel] = useState<Omit<Model, 'id'>>({
@@ -53,58 +58,32 @@ export const ModelsDialog = () => {
     model: '',
   })
 
-  const setNameById = (id: string, name: string) => {
-    setModelsSettings({
-      ...modelsSettings,
-      models: modelsSettings.models.map((m) =>
-        m.id === id ? { ...m, name } : m,
-      ),
-    })
+  const setNameById = async (id: number, name: string) => {
+    await db.models.update(id, { name })
   }
 
-  const setBaseURLById = (id: string, baseURL: string) => {
-    setModelsSettings({
-      ...modelsSettings,
-      models: modelsSettings.models.map((m) =>
-        m.id === id ? { ...m, baseURL } : m,
-      ),
-    })
+  const setBaseURLById = async (id: number, baseURL: string) => {
+    await db.models.update(id, { baseURL })
   }
 
-  const setApiKeyById = (id: string, apiKey: string) => {
-    setModelsSettings({
-      ...modelsSettings,
-      models: modelsSettings.models.map((m) =>
-        m.id === id ? { ...m, apiKey } : m,
-      ),
-    })
+  const setApiKeyById = async (id: number, apiKey: string) => {
+    await db.models.update(id, { apiKey })
   }
 
-  const setModelById = (id: string, model: string) => {
-    setModelsSettings({
-      ...modelsSettings,
-      models: modelsSettings.models.map((m) =>
-        m.id === id ? { ...m, model } : m,
-      ),
-    })
+  const setModelById = async (id: number, model: string) => {
+    await db.models.update(id, { model })
   }
 
-  const setTypeById = (id: string, type: ModelName) => {
-    setModelsSettings({
-      ...modelsSettings,
-      models: modelsSettings.models.map((m) =>
-        m.id === id ? { ...m, type } : m,
-      ),
-    })
+  const setTypeById = async (id: number, type: ModelName) => {
+    await db.models.update(id, { type })
   }
 
-  const addModel = () => {
+  const addModel = async () => {
     const newModelWithId = {
-      id: new Date().getTime().toString(),
       ...mapValues(
         {
           type: newModel.type,
-          name: newModel.name || `Model ${modelsSettings.models.length + 1}`,
+          name: newModel.name || `Model ${models.length + 1}`,
           baseURL: newModel.baseURL,
           apiKey: newModel.apiKey,
           model: newModel.model,
@@ -113,11 +92,8 @@ export const ModelsDialog = () => {
       ),
     } as Model
 
-    setModelsSettings({
-      ...modelsSettings,
-      id: newModelWithId.id,
-      models: [...modelsSettings.models, newModelWithId],
-    })
+    await db.models.add(newModelWithId)
+
     // Reset form
     setNewModel({
       name: '',
@@ -129,42 +105,25 @@ export const ModelsDialog = () => {
     setIsDialogOpen(false)
   }
 
-  const deleteModel = (id: string) => {
-    const willDeleteModel = modelsSettings.models.find((m) => m.id === id)
+  const deleteModel = async (id: number) => {
+    const willDeleteModel = models.find((m) => m.id === id)
 
-    const newModels = modelsSettings.models.filter((m) => m.id !== id)
-    setModelsSettings({
-      ...modelsSettings,
-      models: newModels,
-      id: newModels.length === 0 ? undefined : newModels[0].id,
-    })
+    await db.chats.where('modelId').equals(id).delete()
+    await db.models.delete(id)
 
     toast(`${willDeleteModel?.name} deleted`, {
       position: 'top-right',
-      action: {
-        label: 'Undo',
-        onClick: () => {
-          willDeleteModel &&
-            setModelsSettings((prev) => ({
-              ...prev,
-              models: [...prev.models, willDeleteModel],
-            }))
-        },
-      },
     })
   }
 
-  const copyModel = (id: string) => {
-    const model = modelsSettings.models.find((m) => m.id === id)
+  const copyModel = async (id: number) => {
+    const model = models.find((m) => m.id === id)
     if (!model) return
 
-    setModelsSettings((prev) => ({
-      ...prev,
-      models: [
-        ...prev.models,
-        { ...model, id: new Date().getTime().toString() },
-      ],
-    }))
+    const newModel = await db.models.get(id)
+    if (!newModel) return
+
+    await db.models.add(omit(newModel, ['id']))
 
     toast('Model copied', {
       position: 'top-right',
@@ -288,17 +247,10 @@ export const ModelsDialog = () => {
           </DrawerHeader>
 
           <div className='px-10'>
-            {modelsSettings.models.length ? (
-              <Carousel
-                className='px-10'
-                opts={{
-                  startIndex: modelsSettings.models.findIndex(
-                    (m) => m.id === modelsSettings.id,
-                  ),
-                }}
-              >
+            {models.length ? (
+              <Carousel className='px-10'>
                 <CarouselContent>
-                  {modelsSettings.models.map((model) => (
+                  {models.map((model) => (
                     <CarouselItem key={model.id} className='relative'>
                       <div className='flex flex-col gap-2'>
                         <div className='flex flex-col items-start gap-2'>

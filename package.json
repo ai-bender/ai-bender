@@ -50,6 +50,8 @@
     "ai": "^5.0.29",
     "birpc": "^2.5.0",
     "class-variance-authority": "^0.7.1",
+    "dexie": "^4.2.0",
+    "dexie-react-hooks": "^4.2.0",
     "embla-carousel-react": "^8.6.0",
     "eneo": "^0.0.4",
     "es-toolkit": "^1.39.10",
