@@ -1,15 +1,6 @@
 import { atomWithStorage } from 'jotai/utils'
 import { Models } from '~/models'
-import type { ModelName } from '~/models'
-
-export interface Model {
-  id: string
-  type: ModelName
-  name: string
-  model: string
-  baseURL: string
-  apiKey: string
-}
+import type { Model } from '~/db'
 
 export const defaultModel: Omit<Model, 'id'> = {
   name: 'OpenRouter',
@@ -24,11 +15,5 @@ export const modelsSettingsAtom = atomWithStorage<{
   models: Model[]
 }>('models-settings', {
   id: undefined,
-  models: [
-    {
-      ...defaultModel,
-      type: Models.OpenRouter.name,
-      id: new Date().getTime().toString(),
-    },
-  ],
+  models: [],
 })

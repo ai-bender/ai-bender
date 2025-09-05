@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 'use client'
 import { useChat } from '@ai-sdk/react'
+import { useLiveQuery } from 'dexie-react-hooks'
 import { createEneo } from 'eneo'
-import { useAtom, useAtomValue } from 'jotai/react'
-import { Link2Icon } from 'lucide-react'
+import { useAtom } from 'jotai/react'
+import { Link2Icon, PlusIcon, TrashIcon } from 'lucide-react'
 import { Fragment, useState } from 'react'
 import { toast } from 'sonner'
-import { modelsSettingsAtom } from '~/atoms/models-settings'
 import { syncInputAtom } from '~/atoms/sync-input'
 import {
   Conversation,
@@ -40,20 +40,32 @@ import {
   SourcesContent,
   SourcesTrigger,
 } from '~/components/ai-elements/sources'
+import { Button } from '~/components/ui/button'
 import { inputEmitter } from '~/events/input'
 import { useEffectEvent } from '~/hooks/use-effect-event'
 import type { EneoReturn } from 'eneo'
+import type { Chat as IChat } from '~/db'
 import type { ModelName } from '~/models'
 import type { WorkerFunctions } from '~/worker'
 
-export function Chat() {
+export function Chat({
+  chat,
+  showDelete = true,
+}: {
+  chat: IChat
+  showDelete: boolean
+}) {
+  const models = useLiveQuery(() => db.models.toArray(), [], [])
+  const model = useLiveQuery(() => {
+    if (!chat.modelId) return undefined
+    return db.models.get(chat.modelId)
+  }, [chat.modelId])
+
   const rpc = useRef<EneoReturn<WorkerFunctions>>(null)
-  const [input, _setInput] = useState('')
-  const modelsSettings = useAtomValue(modelsSettingsAtom)
-  const [model, setModel] = useState(modelsSettings.id)
   const [enableSync, setEnableSync] = useState(true)
   const [syncInput, setSyncInput] = useAtom(syncInputAtom)
 
+  const [input, _setInput] = useState('')
   const setInput = useCallback(
     (value: string) => {
       // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
@@ -64,19 +76,6 @@ export function Chat() {
       }
     },
     [enableSync, setSyncInput],
-  )
-
-  const models = useMemo(
-    () =>
-      modelsSettings.models.map((model) => ({
-        value: model.id,
-        name: model.name,
-      })),
-    [modelsSettings],
-  )
-  const currentModel = useMemo(
-    () => modelsSettings.models.find((m) => m.id === model),
-    [modelsSettings, model],
   )
 
   const { messages, sendMessage, status } = useChat({
@@ -117,7 +116,7 @@ export function Chat() {
   })
 
   const handleSubmit = useEffectEvent(() => {
-    if (!currentModel?.apiKey.trim()) {
+    if (!model?.apiKey.trim()) {
       toast.error('Please enter an API key', {
         description: 'You can get one from OpenRouter',
       })
@@ -129,10 +128,10 @@ export function Chat() {
         { text: input },
         {
           body: {
-            model: currentModel.model,
-            apiKey: currentModel.apiKey,
-            baseURL: currentModel.baseURL,
-            type: currentModel.type,
+            model: model.model,
+            apiKey: model.apiKey,
+            baseURL: model.baseURL,
+            type: model.type,
           },
         },
       )
@@ -140,8 +139,20 @@ export function Chat() {
     }
   })
 
+  const setModel = async (modelId: number) => {
+    await db.chats.update(chat.id, { modelId })
+  }
+
+  const addChat = async () => {
+    await db.chats.add({ modelId: null, messages: [] })
+  }
+
+  const deleteChat = async () => {
+    await db.chats.delete(chat.id)
+  }
+
   useEffect(() => {
-    const worker = new Worker(new URL('../worker/index.ts', import.meta.url))
+    const worker = new Worker(new URL('../../worker/index.ts', import.meta.url))
 
     rpc.current = createEneo(
       {},
@@ -182,6 +193,17 @@ export function Chat() {
 
   return (
     <div className='flex h-full flex-col'>
+      <div className='flex justify-end'>
+        {showDelete && (
+          <Button variant='ghost' size='icon' onClick={deleteChat}>
+            <TrashIcon />
+          </Button>
+        )}
+        <Button variant='ghost' size='icon' onClick={addChat}>
+          <PlusIcon />
+        </Button>
+      </div>
+
       <Conversation className='h-full'>
         <ConversationContent>
           {messages.map((message) => (
@@ -269,23 +291,26 @@ export function Chat() {
           <PromptInputTools>
             <PromptInputModelSelect
               onValueChange={(value) => {
-                setModel(value)
+                if (!value) return
+                setModel(Number(value))
               }}
-              value={model}
+              value={model?.id.toString()}
             >
-              <PromptInputModelSelectTrigger>
-                <PromptInputModelSelectValue />
+              <PromptInputModelSelectTrigger className='min-w-24'>
+                <PromptInputModelSelectValue placeholder='Select a model' />
               </PromptInputModelSelectTrigger>
-              <PromptInputModelSelectContent>
-                {models.map((model) => (
-                  <PromptInputModelSelectItem
-                    key={model.value}
-                    value={model.value}
-                  >
-                    {model.name}
-                  </PromptInputModelSelectItem>
-                ))}
-              </PromptInputModelSelectContent>
+              {models.length > 0 && (
+                <PromptInputModelSelectContent>
+                  {models.map((model) => (
+                    <PromptInputModelSelectItem
+                      key={model.id}
+                      value={model.id.toString()}
+                    >
+                      {model.name}
+                    </PromptInputModelSelectItem>
+                  ))}
+                </PromptInputModelSelectContent>
+              )}
             </PromptInputModelSelect>
             <PromptInputButton
               variant={enableSync ? 'default' : 'ghost'}
