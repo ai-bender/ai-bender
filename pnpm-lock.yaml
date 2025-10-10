@@ -43,7 +43,7 @@ importers:
         version: 13.7.0(react@19.2.0)
       '@openrouter/ai-sdk-provider':
         specifier: ^1.2.0
-        version: 1.2.0(ai@5.0.65(zod@4.1.5))(zod@4.1.5)
+        version: 1.2.0(ai@5.0.66(zod@4.1.5))(zod@4.1.5)
       '@radix-ui/react-avatar':
         specifier: ^1.1.10
         version: 1.1.10(@types/react-dom@19.1.9(@types/react@19.1.12))(@types/react@19.1.12)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -82,7 +82,7 @@ importers:
         version: 9.2.1(next@15.5.2(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(typescript@5.9.2)
       ai:
         specifier: ^5.0.33
-        version: 5.0.65(zod@4.1.5)
+        version: 5.0.66(zod@4.1.5)
       birpc:
         specifier: ^2.5.0
         version: 2.5.0
@@ -254,6 +254,12 @@ packages:
 
   '@ai-sdk/gateway@1.0.36':
     resolution: {integrity: sha512-G/CLHzyOy9mhbimSBmV+o59M7ao/NfRFrrhC+eHGp+0qT0diP3IDW5VdkPHKFmDp4Iq7wb4/yOCe7Yk2fQtSrg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  '@ai-sdk/gateway@1.0.37':
+    resolution: {integrity: sha512-/Whwh/gF9Q4B07F8hRIC+gtymkR6efds6MxrMqh6a7VBwXsE4HyAVltEuWRghqUKMbDJHSRsRPis4dZRSxj8KQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -2069,6 +2075,12 @@ packages:
 
   ai@5.0.65:
     resolution: {integrity: sha512-orwsNKAoAmTwHkoy7TG/7nc65SD3hy7k+x8xVHIzfw8CibZm/U2cdbR1ZUex6H2Rpf+uoZpvyQ05FWBJNw7V8A==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  ai@5.0.66:
+    resolution: {integrity: sha512-X/M8ZXSIkRUqFtyi1sYe69XTJnK2CbCXVomD98tTdBL/bPgT4hcSStnDZv7YbiBWlr1oj2V3RFuy88lwEophIQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -4629,6 +4641,13 @@ snapshots:
       '@vercel/oidc': 3.0.2
       zod: 4.1.5
 
+  '@ai-sdk/gateway@1.0.37(zod@4.1.5)':
+    dependencies:
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.11(zod@4.1.5)
+      '@vercel/oidc': 3.0.2
+      zod: 4.1.5
+
   '@ai-sdk/google@2.0.12(zod@4.1.5)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
@@ -5383,9 +5402,9 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
-  '@openrouter/ai-sdk-provider@1.2.0(ai@5.0.65(zod@4.1.5))(zod@4.1.5)':
+  '@openrouter/ai-sdk-provider@1.2.0(ai@5.0.66(zod@4.1.5))(zod@4.1.5)':
     dependencies:
-      ai: 5.0.65(zod@4.1.5)
+      ai: 5.0.66(zod@4.1.5)
       zod: 4.1.5
 
   '@opentelemetry/api@1.9.0': {}
@@ -6647,6 +6666,14 @@ snapshots:
   ai@5.0.65(zod@4.1.5):
     dependencies:
       '@ai-sdk/gateway': 1.0.36(zod@4.1.5)
+      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider-utils': 3.0.11(zod@4.1.5)
+      '@opentelemetry/api': 1.9.0
+      zod: 4.1.5
+
+  ai@5.0.66(zod@4.1.5):
+    dependencies:
+      '@ai-sdk/gateway': 1.0.37(zod@4.1.5)
       '@ai-sdk/provider': 2.0.0
       '@ai-sdk/provider-utils': 3.0.11(zod@4.1.5)
       '@opentelemetry/api': 1.9.0
