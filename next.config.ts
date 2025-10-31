@@ -15,9 +15,7 @@ const withSerwist = withSerwistInit({
 
 const nextConfig: NextConfig = {
   output: 'export',
-  experimental: {
-    reactCompiler: true,
-  },
+  reactCompiler: true,
   typedRoutes: true,
   webpack: (config) => {
     config.plugins.push(
