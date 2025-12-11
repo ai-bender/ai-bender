@@ -42,7 +42,7 @@ import {
 } from '~/components/ai-elements/sources'
 import { Button } from '~/components/ui/button'
 import { inputEmitter } from '~/events/input'
-import { useEffectEvent } from '~/hooks/use-effect-event'
+import { useMemoizedFn } from '~/hooks/use-memoized-fn'
 import type { EneoReturn } from 'eneo'
 import type { Chat as IChat } from '~/db'
 import type { ModelName } from '~/models'
@@ -115,7 +115,7 @@ export function Chat({
     },
   })
 
-  const handleSubmit = useEffectEvent(() => {
+  const handleSubmit = useMemoizedFn(() => {
     if (!model?.apiKey.trim()) {
       toast.error('Please enter an API key', {
         description: 'You can get one from OpenRouter',

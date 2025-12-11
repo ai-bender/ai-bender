@@ -91,6 +91,8 @@ export const openai = createModel<
     'gpt-5-nano': { id: 'gpt-5-nano' },
     'gpt-5-nano-2025-08-07': { id: 'gpt-5-nano-2025-08-07' },
     'gpt-5-chat-latest': { id: 'gpt-5-chat-latest' },
+    'gpt-5.1': { id: 'gpt-5.1' },
+    'gpt-5.1-chat-latest': { id: 'gpt-5.1-chat-latest' },
   },
   image: {
     'gpt-image-1': { id: 'gpt-image-1' },
@@ -159,6 +161,9 @@ export const xai = createModel<
     'grok-vision-beta': { id: 'grok-vision-beta' },
     'grok-beta': { id: 'grok-beta' },
     'grok-code-fast-1': { id: 'grok-code-fast-1' },
+    'grok-4-1': { id: 'grok-4-1' },
+    'grok-4-1-fast-reasoning': { id: 'grok-4-1-fast-reasoning' },
+    'grok-4-1-fast-non-reasoning': { id: 'grok-4-1-fast-non-reasoning' },
   },
   image: {
     'grok-2-image': { id: 'grok-2-image' },
@@ -202,6 +207,8 @@ export const anthropic = createModel<
     'claude-3-7-sonnet-latest': { id: 'claude-3-7-sonnet-latest' },
     'claude-3-7-sonnet-20250219': { id: 'claude-3-7-sonnet-20250219' },
     'claude-sonnet-4-5-20250929': { id: 'claude-sonnet-4-5-20250929' },
+    'claude-opus-4-5': { id: 'claude-opus-4-5' },
+    'claude-opus-4-5-20251101': { id: 'claude-opus-4-5-20251101' },
   },
 })
 
@@ -229,7 +236,6 @@ export const groq = createModel<'Groq', Literals<Parameters<GroqProvider>[0]>>({
     'meta-llama/llama-prompt-guard-2-86m': {
       id: 'meta-llama/llama-prompt-guard-2-86m',
     },
-    'moonshotai/kimi-k2-instruct': { id: 'moonshotai/kimi-k2-instruct' },
     'qwen/qwen3-32b': { id: 'qwen/qwen3-32b' },
     'llama-guard-3-8b': { id: 'llama-guard-3-8b' },
     'llama3-70b-8192': { id: 'llama3-70b-8192' },
@@ -238,6 +244,9 @@ export const groq = createModel<'Groq', Literals<Parameters<GroqProvider>[0]>>({
     'qwen-qwq-32b': { id: 'qwen-qwq-32b' },
     'qwen-2.5-32b': { id: 'qwen-2.5-32b' },
     'deepseek-r1-distill-qwen-32b': { id: 'deepseek-r1-distill-qwen-32b' },
+    'moonshotai/kimi-k2-instruct-0905': {
+      id: 'moonshotai/kimi-k2-instruct-0905',
+    },
   },
 })
 
@@ -299,9 +308,20 @@ export const google = createModel<
     'gemma-3-27b-it': {
       id: 'gemma-3-27b-it',
     },
+    'gemini-3-pro-preview': {
+      id: 'gemini-3-pro-preview',
+    },
+    'gemini-3-pro-image-preview': {
+      id: 'gemini-3-pro-image-preview',
+    },
+    'gemini-pro-latest': { id: 'gemini-pro-latest' },
+    'gemini-flash-latest': { id: 'gemini-flash-latest' },
+    'gemini-flash-lite-latest': { id: 'gemini-flash-lite-latest' },
   },
   image: {
-    'imagen-3.0-generate-002': { id: 'imagen-3.0-generate-002' },
+    'imagen-4.0-generate-001': { id: 'imagen-4.0-generate-001' },
+    'imagen-4.0-ultra-generate-001': { id: 'imagen-4.0-ultra-generate-001' },
+    'imagen-4.0-fast-generate-001': { id: 'imagen-4.0-fast-generate-001' },
   },
 })
 
