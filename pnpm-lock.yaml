@@ -28,7 +28,7 @@ importers:
         version: 2.0.80(zod@4.1.13)
       '@ai-sdk/react':
         specifier: ^2.0.112
-        version: 2.0.136(react@19.2.4)(zod@4.1.13)
+        version: 2.0.137(react@19.2.4)(zod@4.1.13)
       '@ai-sdk/vercel':
         specifier: ^1.0.29
         version: 1.0.29(zod@4.1.13)
@@ -258,8 +258,8 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/gateway@2.0.40':
-    resolution: {integrity: sha512-hte5am9TLJpgKua9lvqdy/f3HtjrKkz39CrL9UzO5ZEeTvbTLc63qRWUwcTniw8oUoPmttkEqfrieQNrNOj11w==}
+  '@ai-sdk/gateway@2.0.41':
+    resolution: {integrity: sha512-0YPxu3ybm6L8h0mclMP5Uyi2sT/06rEkd3LZWO0eYsamHmlev2HXKhm5GYPtaRVpIRgJE+HJglpL/Ww5aM8EJw==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -314,8 +314,8 @@ packages:
     resolution: {integrity: sha512-KCUwswvsC5VsW2PWFqF8eJgSCu5Ysj7m1TxiHTVA6g7k360bk0RNQENT8KTMAYEs+8fWPD3Uu4dEmzGHc+jGng==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@2.0.136':
-    resolution: {integrity: sha512-SsvFdxcCdTyICY/XDcQ40ggD3rWk/bFEFq2WPipASr3JOehRuwShST2dxoyiCueBhk3LTIgt7o0CSNjXAL3XHA==}
+  '@ai-sdk/react@2.0.137':
+    resolution: {integrity: sha512-hVfTTGZrGIB4ZYdKyqkk7wPBIukUrBiNSoxXlCPFKmFRNNPf1RwPnXBvDeUzxWx4drMrameyfT90UM7tmhDNbA==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
@@ -2249,8 +2249,8 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  ai@5.0.134:
-    resolution: {integrity: sha512-uRvARFf26H3wxjVTD8K/kxK+PezPMeQi+kqliByDC1gAOyifprUEVktx2fx8eARSZIAQndTOTH1r9Rs4WZdqBQ==}
+  ai@5.0.135:
+    resolution: {integrity: sha512-FH5xvP/V2YBmbZy/2Z+rDZ2+Ao/L2AH4H7OenJC4liXnMFoPjslRWP3BHdIyjcPnO3wTgwPlv+Nml4ikkf5Nbw==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -4843,7 +4843,7 @@ snapshots:
       '@vercel/oidc': 3.1.0
       zod: 4.1.13
 
-  '@ai-sdk/gateway@2.0.40(zod@4.1.13)':
+  '@ai-sdk/gateway@2.0.41(zod@4.1.13)':
     dependencies:
       '@ai-sdk/provider': 2.0.1
       '@ai-sdk/provider-utils': 3.0.21(zod@4.1.13)
@@ -4902,10 +4902,10 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.136(react@19.2.4)(zod@4.1.13)':
+  '@ai-sdk/react@2.0.137(react@19.2.4)(zod@4.1.13)':
     dependencies:
       '@ai-sdk/provider-utils': 3.0.21(zod@4.1.13)
-      ai: 5.0.134(zod@4.1.13)
+      ai: 5.0.135(zod@4.1.13)
       react: 19.2.4
       swr: 2.4.0(react@19.2.4)
       throttleit: 2.1.0
@@ -4993,7 +4993,7 @@ snapshots:
 
   '@babel/generator@7.28.5':
     dependencies:
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.28.5
       '@babel/types': 7.28.5
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
@@ -5051,8 +5051,8 @@ snapshots:
 
   '@babel/helper-module-imports@7.27.1':
     dependencies:
-      '@babel/traverse': 7.29.0
-      '@babel/types': 7.29.0
+      '@babel/traverse': 7.28.5
+      '@babel/types': 7.28.5
     transitivePeerDependencies:
       - supports-color
 
@@ -5140,7 +5140,7 @@ snapshots:
   '@babel/template@7.27.2':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.28.5
       '@babel/types': 7.28.5
 
   '@babel/template@7.28.6':
@@ -5154,7 +5154,7 @@ snapshots:
       '@babel/code-frame': 7.27.1
       '@babel/generator': 7.28.5
       '@babel/helper-globals': 7.28.0
-      '@babel/parser': 7.29.0
+      '@babel/parser': 7.28.5
       '@babel/template': 7.27.2
       '@babel/types': 7.28.5
       debug: 4.4.3
@@ -7046,9 +7046,9 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       zod: 4.1.13
 
-  ai@5.0.134(zod@4.1.13):
+  ai@5.0.135(zod@4.1.13):
     dependencies:
-      '@ai-sdk/gateway': 2.0.40(zod@4.1.13)
+      '@ai-sdk/gateway': 2.0.41(zod@4.1.13)
       '@ai-sdk/provider': 2.0.1
       '@ai-sdk/provider-utils': 3.0.21(zod@4.1.13)
       '@opentelemetry/api': 1.9.0
