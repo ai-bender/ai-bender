@@ -177,6 +177,7 @@ export function Chat({
 
   useEffect(() => {
     if (enableSync) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInput(syncInput)
     }
   }, [syncInput, enableSync, setInput])

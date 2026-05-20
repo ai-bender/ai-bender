@@ -69,6 +69,7 @@ export const Reasoning = memo(
     useEffect(() => {
       if (isStreaming) {
         if (startTime === null) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setStartTime(Date.now())
         }
       } else if (startTime !== null) {
@@ -95,7 +96,6 @@ export const Reasoning = memo(
     }
 
     return (
-      // eslint-disable-next-line react/no-unstable-context-value
       <ReasoningContext value={{ isStreaming, isOpen, setIsOpen, duration }}>
         <Collapsible
           className={cn('not-prose mb-4', className)}

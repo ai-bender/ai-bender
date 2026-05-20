@@ -55,7 +55,6 @@ export const WebPreview = ({
     onUrlChange?.(newUrl)
   }
 
-  // eslint-disable-next-line react/no-unstable-context-value
   const contextValue: WebPreviewContextValue = {
     url,
     setUrl: handleUrlChange,

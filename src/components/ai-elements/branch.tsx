@@ -59,7 +59,6 @@ export const Branch = ({
     handleBranchChange(newBranch)
   }
 
-  // eslint-disable-next-line react/no-unstable-context-value
   const contextValue: BranchContextType = {
     currentBranch,
     totalBranches: branches.length,

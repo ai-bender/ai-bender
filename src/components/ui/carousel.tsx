@@ -106,7 +106,6 @@ function Carousel({
 
   return (
     <CarouselContext
-      // eslint-disable-next-line react/no-unstable-context-value
       value={{
         carouselRef,
         api,
