@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import {
   AnthropicLogo,
   DeepSeekLogo,
@@ -93,10 +92,25 @@ export const openai = createModel<
     'gpt-5-chat-latest': { id: 'gpt-5-chat-latest' },
     'gpt-5.1': { id: 'gpt-5.1' },
     'gpt-5.1-chat-latest': { id: 'gpt-5.1-chat-latest' },
+    'gpt-5.2': { id: 'gpt-5.2' },
+    'gpt-5.2-chat-latest': { id: 'gpt-5.2-chat-latest' },
+    'gpt-5.2-pro': { id: 'gpt-5.2-pro' },
+    'gpt-5.2-pro-2025-12-11': { id: 'gpt-5.2-pro-2025-12-11' },
+    'gpt-5.3-chat-latest': { id: 'gpt-5.3-chat-latest' },
+    'gpt-5.4': { id: 'gpt-5.4' },
+    'gpt-5.4-2026-03-05': { id: 'gpt-5.4-2026-03-05' },
+    'gpt-5.4-mini': { id: 'gpt-5.4-mini' },
+    'gpt-5.4-mini-2026-03-17': { id: 'gpt-5.4-mini-2026-03-17' },
+    'gpt-5.4-nano': { id: 'gpt-5.4-nano' },
+    'gpt-5.4-nano-2026-03-17': { id: 'gpt-5.4-nano-2026-03-17' },
+    'gpt-5.4-pro': { id: 'gpt-5.4-pro' },
+    'gpt-5.4-pro-2026-03-05': { id: 'gpt-5.4-pro-2026-03-05' },
   },
   image: {
     'gpt-image-1': { id: 'gpt-image-1' },
     'gpt-image-1-mini': { id: 'gpt-image-1-mini' },
+    'gpt-image-1.5': { id: 'gpt-image-1.5' },
+    'gpt-image-2': { id: 'gpt-image-2' },
     'dall-e-3': { id: 'dall-e-3' },
     'dall-e-2': { id: 'dall-e-2' },
   },
@@ -164,6 +178,9 @@ export const xai = createModel<
     'grok-4-1': { id: 'grok-4-1' },
     'grok-4-1-fast-reasoning': { id: 'grok-4-1-fast-reasoning' },
     'grok-4-1-fast-non-reasoning': { id: 'grok-4-1-fast-non-reasoning' },
+    'grok-4.20-0309-non-reasoning': { id: 'grok-4.20-0309-non-reasoning' },
+    'grok-4.20-0309-reasoning': { id: 'grok-4.20-0309-reasoning' },
+    'grok-4.20-multi-agent-0309': { id: 'grok-4.20-multi-agent-0309' },
   },
   image: {
     'grok-2-image': { id: 'grok-2-image' },
@@ -209,6 +226,9 @@ export const anthropic = createModel<
     'claude-sonnet-4-5-20250929': { id: 'claude-sonnet-4-5-20250929' },
     'claude-opus-4-5': { id: 'claude-opus-4-5' },
     'claude-opus-4-5-20251101': { id: 'claude-opus-4-5-20251101' },
+    'claude-sonnet-4-6': { id: 'claude-sonnet-4-6' },
+    'claude-opus-4-6': { id: 'claude-opus-4-6' },
+    'claude-opus-4-7': { id: 'claude-opus-4-7' },
   },
 })
 
@@ -287,15 +307,6 @@ export const google = createModel<
     'gemini-2.5-flash-lite': {
       id: 'gemini-2.5-flash-lite',
     },
-    'gemini-2.5-flash-lite-preview-09-2025': {
-      id: 'gemini-2.5-flash-lite-preview-09-2025',
-    },
-    'gemini-2.5-flash-preview-04-17': {
-      id: 'gemini-2.5-flash-preview-04-17',
-    },
-    'gemini-2.5-flash-preview-09-2025': {
-      id: 'gemini-2.5-flash-preview-09-2025',
-    },
     'gemini-2.5-pro-exp-03-25': {
       id: 'gemini-2.5-pro-exp-03-25',
     },
@@ -308,11 +319,50 @@ export const google = createModel<
     'gemma-3-27b-it': {
       id: 'gemma-3-27b-it',
     },
+    'gemini-2.5-flash-preview-tts': {
+      id: 'gemini-2.5-flash-preview-tts',
+    },
+    'gemini-2.5-pro-preview-tts': {
+      id: 'gemini-2.5-pro-preview-tts',
+    },
+    'gemini-2.5-flash-native-audio-latest': {
+      id: 'gemini-2.5-flash-native-audio-latest',
+    },
+    'gemini-2.5-flash-native-audio-preview-09-2025': {
+      id: 'gemini-2.5-flash-native-audio-preview-09-2025',
+    },
+    'gemini-2.5-flash-native-audio-preview-12-2025': {
+      id: 'gemini-2.5-flash-native-audio-preview-12-2025',
+    },
+    'gemini-2.5-computer-use-preview-10-2025': {
+      id: 'gemini-2.5-computer-use-preview-10-2025',
+    },
     'gemini-3-pro-preview': {
       id: 'gemini-3-pro-preview',
     },
     'gemini-3-pro-image-preview': {
       id: 'gemini-3-pro-image-preview',
+    },
+    'gemini-3-flash-preview': {
+      id: 'gemini-3-flash-preview',
+    },
+    'gemini-3.1-pro-preview': {
+      id: 'gemini-3.1-pro-preview',
+    },
+    'gemini-3.1-pro-preview-customtools': {
+      id: 'gemini-3.1-pro-preview-customtools',
+    },
+    'gemini-3.1-flash-image-preview': {
+      id: 'gemini-3.1-flash-image-preview',
+    },
+    'gemini-3.1-flash-lite-preview': {
+      id: 'gemini-3.1-flash-lite-preview',
+    },
+    'gemini-3.1-flash-tts-preview': {
+      id: 'gemini-3.1-flash-tts-preview',
+    },
+    'gemini-3.5-flash': {
+      id: 'gemini-3.5-flash',
     },
     'gemini-pro-latest': { id: 'gemini-pro-latest' },
     'gemini-flash-latest': { id: 'gemini-flash-latest' },
