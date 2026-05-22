@@ -31,7 +31,7 @@ importers:
         version: 2.0.106(zod@4.4.3)
       '@ai-sdk/react':
         specifier: ^2.0.192
-        version: 2.0.192(react@19.2.6)(zod@4.4.3)
+        version: 2.0.194(react@19.2.6)(zod@4.4.3)
       '@ai-sdk/vercel':
         specifier: ^1.0.40
         version: 1.0.40(zod@4.4.3)
@@ -261,6 +261,12 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
+  '@ai-sdk/gateway@2.0.93':
+    resolution: {integrity: sha512-aiWQIZIQ69HOySNRLKRPJGsmGtVpPN0qXobK6aKnm8NOEyPbZHYy2ljkSAG5tvaL/Kg015WMInG4x9t2MvnG6A==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
   '@ai-sdk/google@2.0.74':
     resolution: {integrity: sha512-Lhw1742RXc+4pRIvqVXa0jdl5+qdpmw8lj0lm6OchUg9rVGHzymlaxe7CDiYX5U2af4jbjKeTY22LDi3bIycgQ==}
     engines: {node: '>=18'}
@@ -301,8 +307,8 @@ packages:
     resolution: {integrity: sha512-h88OPkavHTiN9tMn2l5awAznGB0lXzjcLhgR1/rvjB2zlLprsNxbM2tt6OJsHUxduLC3klq0/eqaSf6fX5XVww==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@2.0.192':
-    resolution: {integrity: sha512-0w6YX2ry+M8VRmNDA/CnDvoFGA9/xGqwy7+GsdPmePUiJLvxYN65Ep6yHhcl7N77TFcNhIJh4vrDRdSV3RZCzQ==}
+  '@ai-sdk/react@2.0.194':
+    resolution: {integrity: sha512-7ZLCBpXyFTPa3530H71Rsz3rYztwkEsNzoP35SdbXCz/QCQNnFpl2/+FRqOdj5RwiMahkVk6/HKovjETytthXg==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
@@ -2269,6 +2275,12 @@ packages:
 
   ai@5.0.190:
     resolution: {integrity: sha512-aDaixi6U7TgJoGYjefO35hxGkym9mbTrAY9b+xSq/DE7LonwNCHUuCFl1EwaZdt/eo8rCa5Td7kKga4p1LqL8Q==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  ai@5.0.192:
+    resolution: {integrity: sha512-m46S3iEuIcX1TjNfIQf+jr2dj+vmOY6gfhj2aKZutxru1nUnRtbCFAe5pZ9mhDApOv/EpfCrWKudwQqtoMzF0g==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -4302,6 +4314,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.8.1:
+    resolution: {integrity: sha512-rkVq3IXh+4FDGch+KwzX3aV9W3kO54GyEgpvBzSyctDA6Xtd7RJQV1xmXbeQp5v7+VzLOfVqiutSE6GICgPFvg==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   serwist@9.5.11:
     resolution: {integrity: sha512-Bq6uwJFd4ET60BWI77v3VbazKHv6k7lECOiiCFwKyBu/slaCn0GHJ5L5RfsuJUKrnbD9lYUCDo6sqaKRM5M2vA==}
     peerDependencies:
@@ -4830,6 +4847,13 @@ snapshots:
       '@vercel/oidc': 3.1.0
       zod: 4.4.3
 
+  '@ai-sdk/gateway@2.0.93(zod@4.4.3)':
+    dependencies:
+      '@ai-sdk/provider': 2.0.3
+      '@ai-sdk/provider-utils': 3.0.25(zod@4.4.3)
+      '@vercel/oidc': 3.1.0
+      zod: 4.4.3
+
   '@ai-sdk/google@2.0.74(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 2.0.3
@@ -4871,10 +4895,10 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.192(react@19.2.6)(zod@4.4.3)':
+  '@ai-sdk/react@2.0.194(react@19.2.6)(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider-utils': 3.0.25(zod@4.4.3)
-      ai: 5.0.190(zod@4.4.3)
+      ai: 5.0.192(zod@4.4.3)
       react: 19.2.6
       swr: 2.4.1(react@19.2.6)
       throttleit: 2.1.0
@@ -6826,7 +6850,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.49.0
       debug: 4.4.3
       minimatch: 9.0.5
-      semver: 7.8.0
+      semver: 7.8.1
       tinyglobby: 0.2.15
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
@@ -6841,7 +6865,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.59.4
       debug: 4.4.3
       minimatch: 10.2.5
-      semver: 7.8.0
+      semver: 7.8.1
       tinyglobby: 0.2.15
       ts-api-utils: 2.5.0(typescript@5.9.3)
       typescript: 5.9.3
@@ -6977,6 +7001,14 @@ snapshots:
   ai@5.0.190(zod@4.4.3):
     dependencies:
       '@ai-sdk/gateway': 2.0.91(zod@4.4.3)
+      '@ai-sdk/provider': 2.0.3
+      '@ai-sdk/provider-utils': 3.0.25(zod@4.4.3)
+      '@opentelemetry/api': 1.9.0
+      zod: 4.4.3
+
+  ai@5.0.192(zod@4.4.3):
+    dependencies:
+      '@ai-sdk/gateway': 2.0.93(zod@4.4.3)
       '@ai-sdk/provider': 2.0.3
       '@ai-sdk/provider-utils': 3.0.25(zod@4.4.3)
       '@opentelemetry/api': 1.9.0
@@ -9387,6 +9419,8 @@ snapshots:
   semver@7.7.4: {}
 
   semver@7.8.0: {}
+
+  semver@7.8.1: {}
 
   serwist@9.5.11(browserslist@4.28.2)(typescript@5.9.3):
     dependencies:
