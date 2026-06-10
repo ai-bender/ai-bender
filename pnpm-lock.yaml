@@ -46,7 +46,7 @@ importers:
         version: 13.13.0(react@19.2.7)
       '@openrouter/ai-sdk-provider':
         specifier: ^1.5.4
-        version: 1.5.4(ai@5.0.196(zod@4.4.3))(zod@4.4.3)
+        version: 1.5.4(ai@5.0.197(zod@4.4.3))(zod@4.4.3)
       '@radix-ui/react-avatar':
         specifier: ^1.1.11
         version: 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -85,7 +85,7 @@ importers:
         version: 9.5.11(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)(typescript@5.9.3)
       ai:
         specifier: ^5.0.190
-        version: 5.0.196(zod@4.4.3)
+        version: 5.0.197(zod@4.4.3)
       birpc:
         specifier: ^3.0.0
         version: 3.0.0
@@ -251,12 +251,6 @@ packages:
 
   '@ai-sdk/deepseek@1.0.41':
     resolution: {integrity: sha512-7L2Do5wk0xRe0Ox8CVRF9B5b5SPemZP16ZbyBUAlNtO16EMFLSX8LXGeQREZ2SOQ4pC95BwSXThcTkt1JbFNlA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/gateway@2.0.97':
-    resolution: {integrity: sha512-8lM9IuiUcYNw9aYKKsD9Rwr7tfbBxIgsCNlktGBGS7IQHe7bLbK0AZzQKKVWz3JxJn/nhVbGtiFNt3fUnHahvQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -2340,12 +2334,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  ai@5.0.196:
-    resolution: {integrity: sha512-JaljZ1/UagJ1oJp8CcMDxXoE2E2pv4Q/hETkhcD8aE15pbnO7KhEeIqLgsQEizJjc5AquS7matl6GfnDQUDUpA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
   ai@5.0.197:
     resolution: {integrity: sha512-iUzFb2M3ZUL/Bbmfonh75DIZ354svWO5xh8VPC2wYNR6zzEMFghPOlJG5rtEpqRa037lHfdcjt0qmzg3em/WDw==}
     engines: {node: '>=18'}
@@ -4381,8 +4369,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  semver@7.8.3:
-    resolution: {integrity: sha512-wnilbGyMxzbY7dNOl7jpKbLSjcfeweJWU5j4+u5qW+6/wuGD9KzIGOyZnQVSBM9E7DtWaaH3CyHkppYrKYoxwg==}
+  semver@7.8.4:
+    resolution: {integrity: sha512-rUCObTnP32Q08R2uuIrt7r9PlEonuTmtuXYcW6s5kjdlj3xbnwe+21yXptAUYcMAABLkYYTtnmzb3w3EDZfueA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4905,13 +4893,6 @@ snapshots:
     dependencies:
       '@ai-sdk/provider': 2.0.3
       '@ai-sdk/provider-utils': 3.0.25(zod@4.4.3)
-      zod: 4.4.3
-
-  '@ai-sdk/gateway@2.0.97(zod@4.4.3)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.3
-      '@ai-sdk/provider-utils': 3.0.25(zod@4.4.3)
-      '@vercel/oidc': 3.1.0
       zod: 4.4.3
 
   '@ai-sdk/gateway@2.0.98(zod@4.4.3)':
@@ -5781,10 +5762,10 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
-  '@openrouter/ai-sdk-provider@1.5.4(ai@5.0.196(zod@4.4.3))(zod@4.4.3)':
+  '@openrouter/ai-sdk-provider@1.5.4(ai@5.0.197(zod@4.4.3))(zod@4.4.3)':
     dependencies:
       '@openrouter/sdk': 0.1.27
-      ai: 5.0.196(zod@4.4.3)
+      ai: 5.0.197(zod@4.4.3)
       zod: 4.4.3
 
   '@openrouter/sdk@0.1.27':
@@ -7017,7 +6998,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.49.0
       debug: 4.4.3
       minimatch: 9.0.5
-      semver: 7.8.3
+      semver: 7.8.4
       tinyglobby: 0.2.15
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
@@ -7032,7 +7013,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.59.4
       debug: 4.4.3
       minimatch: 10.2.5
-      semver: 7.8.3
+      semver: 7.8.4
       tinyglobby: 0.2.15
       ts-api-utils: 2.5.0(typescript@5.9.3)
       typescript: 5.9.3
@@ -7164,14 +7145,6 @@ snapshots:
   acorn@8.15.0: {}
 
   acorn@8.16.0: {}
-
-  ai@5.0.196(zod@4.4.3):
-    dependencies:
-      '@ai-sdk/gateway': 2.0.97(zod@4.4.3)
-      '@ai-sdk/provider': 2.0.3
-      '@ai-sdk/provider-utils': 3.0.25(zod@4.4.3)
-      '@opentelemetry/api': 1.9.0
-      zod: 4.4.3
 
   ai@5.0.197(zod@4.4.3):
     dependencies:
@@ -9587,7 +9560,7 @@ snapshots:
 
   semver@7.8.0: {}
 
-  semver@7.8.3: {}
+  semver@7.8.4: {}
 
   serwist@9.5.11(browserslist@4.28.2)(typescript@5.9.3):
     dependencies:
