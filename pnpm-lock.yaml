@@ -31,7 +31,7 @@ importers:
         version: 2.0.109(zod@4.4.3)
       '@ai-sdk/react':
         specifier: ^2.0.192
-        version: 2.0.206(react@19.2.7)(zod@4.4.3)
+        version: 2.0.207(react@19.2.7)(zod@4.4.3)
       '@ai-sdk/vercel':
         specifier: ^1.0.40
         version: 1.0.40(zod@4.4.3)
@@ -261,6 +261,12 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
+  '@ai-sdk/gateway@2.0.104':
+    resolution: {integrity: sha512-t5EjGuSDygzaxqizFNIdPBFD64soREeyMuwy0FHEp9NfAv4Dg2fpD4gqbPO8P07whegY5ROMr58yUeVUuS+rMg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
   '@ai-sdk/google@2.0.74':
     resolution: {integrity: sha512-Lhw1742RXc+4pRIvqVXa0jdl5+qdpmw8lj0lm6OchUg9rVGHzymlaxe7CDiYX5U2af4jbjKeTY22LDi3bIycgQ==}
     engines: {node: '>=18'}
@@ -307,8 +313,8 @@ packages:
     resolution: {integrity: sha512-h88OPkavHTiN9tMn2l5awAznGB0lXzjcLhgR1/rvjB2zlLprsNxbM2tt6OJsHUxduLC3klq0/eqaSf6fX5XVww==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@2.0.206':
-    resolution: {integrity: sha512-SVbc+0pfjplRWoaNW0ObT22XR3c9rdOODQ+UYkQ0VO89hpV+2dT4Q2kmDbtLk/g5wx9OTtfdBWhLCyOCT15NTw==}
+  '@ai-sdk/react@2.0.207':
+    resolution: {integrity: sha512-0ezpCNfxnKijOrT/X2G8VaZuPSvj+9eC5AqZZe0IZEkaDuSFHK6ARytzMIXm3ay1ojgX5fcIG2AjhkMY9fxpGg==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
@@ -2346,6 +2352,12 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
+  ai@5.0.205:
+    resolution: {integrity: sha512-rS3nt4K2BXvQfeyJQI1DbNIY3C6CWFp5/+9w98hJEPWiJV9YzwVFwQ8VYGnYsht9o/JOY9CX+AKfXMG60lJlAg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
   ajv@6.15.0:
     resolution: {integrity: sha512-fgFx7Hfoq60ytK2c7DhnF8jIvzYgOMxfugjLOSMHjLIPgenqa7S7oaagATUq99mV6IYvN2tRmC0wnTYX6iPbMw==}
 
@@ -2791,8 +2803,8 @@ packages:
   electron-to-chromium@1.5.360:
     resolution: {integrity: sha512-GkcBt6YYAw9SxFWn+xVar4cLVGlXVuswwtRLBozi2zp0GjXs4ZnOrqV4zbXzg35n7w81hCkyJNYicgXlVHAmBA==}
 
-  electron-to-chromium@1.5.376:
-    resolution: {integrity: sha512-cUVA7/RvbFTEuw/i3obUwDTRIXojaxkResf+ibByPFxjc6XK3VNtcQXV0NSbAlJ0FMjcJGgftVVB4Qo184EXvA==}
+  electron-to-chromium@1.5.377:
+    resolution: {integrity: sha512-cH1jZgJHoezfTnKfKwnScpHywTFVnJUNITDPREFdhNjiuD502+QFpG0Qk7G8jhsV/f+CEAFlIrzP1fT+IMb92g==}
 
   embla-carousel-react@8.6.0:
     resolution: {integrity: sha512-0/PjqU7geVmo6F734pmPqpyHqiM99olvyecY7zdweCw+6tKEXnrE90pBiBbMMU8s5tICemzpQ3hi5EpxzGW+JA==}
@@ -4538,8 +4550,8 @@ packages:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
 
-  swr@2.4.1:
-    resolution: {integrity: sha512-2CC6CiKQtEwaEeNiqWTAw9PGykW8SR5zZX8MZk6TeAvEAnVS7Visz8WzphqgtQ8v2xz/4Q5K+j+SeMaKXeeQIA==}
+  swr@2.4.2:
+    resolution: {integrity: sha512-ej644Y2bvkIajfR32KGeSSdBXQW+ScjGjkybZgSE7kFpk9eGnV44XY9FJylXi+W75pavSX1PVNB57W5EbhGIYw==}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -4928,6 +4940,13 @@ snapshots:
       '@vercel/oidc': 3.1.0
       zod: 4.4.3
 
+  '@ai-sdk/gateway@2.0.104(zod@4.4.3)':
+    dependencies:
+      '@ai-sdk/provider': 2.0.3
+      '@ai-sdk/provider-utils': 3.0.27(zod@4.4.3)
+      '@vercel/oidc': 3.1.0
+      zod: 4.4.3
+
   '@ai-sdk/google@2.0.74(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 2.0.3
@@ -4976,12 +4995,12 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.206(react@19.2.7)(zod@4.4.3)':
+  '@ai-sdk/react@2.0.207(react@19.2.7)(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider-utils': 3.0.27(zod@4.4.3)
-      ai: 5.0.204(zod@4.4.3)
+      ai: 5.0.205(zod@4.4.3)
       react: 19.2.7
-      swr: 2.4.1(react@19.2.7)
+      swr: 2.4.2(react@19.2.7)
       throttleit: 2.1.0
     optionalDependencies:
       zod: 4.4.3
@@ -7191,6 +7210,14 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       zod: 4.4.3
 
+  ai@5.0.205(zod@4.4.3):
+    dependencies:
+      '@ai-sdk/gateway': 2.0.104(zod@4.4.3)
+      '@ai-sdk/provider': 2.0.3
+      '@ai-sdk/provider-utils': 3.0.27(zod@4.4.3)
+      '@opentelemetry/api': 1.9.0
+      zod: 4.4.3
+
   ajv@6.15.0:
     dependencies:
       fast-deep-equal: 3.1.3
@@ -7267,7 +7294,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.38
       caniuse-lite: 1.0.30001799
-      electron-to-chromium: 1.5.376
+      electron-to-chromium: 1.5.377
       node-releases: 2.0.48
       update-browserslist-db: 1.2.3(browserslist@4.28.4)
 
@@ -7616,7 +7643,7 @@ snapshots:
 
   electron-to-chromium@1.5.360: {}
 
-  electron-to-chromium@1.5.376: {}
+  electron-to-chromium@1.5.377: {}
 
   embla-carousel-react@8.6.0(react@19.2.7):
     dependencies:
@@ -9808,7 +9835,7 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  swr@2.4.1(react@19.2.7):
+  swr@2.4.2(react@19.2.7):
     dependencies:
       dequal: 2.0.3
       react: 19.2.7
