@@ -31,7 +31,7 @@ importers:
         version: 2.0.110(zod@4.4.3)
       '@ai-sdk/react':
         specifier: ^2.0.192
-        version: 2.0.217(react@19.2.7)(zod@4.4.3)
+        version: 2.0.218(react@19.2.7)(zod@4.4.3)
       '@ai-sdk/vercel':
         specifier: ^1.0.40
         version: 1.0.40(zod@4.4.3)
@@ -261,8 +261,8 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/gateway@2.0.114':
-    resolution: {integrity: sha512-BdDqd9b3C/fW0w1hH85g0DJclvjVziGEj5Jkl0RovnM0IGoAPqAdqrEjgglXqiv4QEm4IeRvgCyvrol/j06MKA==}
+  '@ai-sdk/gateway@2.0.115':
+    resolution: {integrity: sha512-BLN5eLjzg6mKkbxAf6oP8Z7mEyRihrDzBJr7QlNPZTFvgZJ15peoflUJuskTCZFaisqelj1P4Se1pHY8QBBgBA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -315,12 +315,18 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
+  '@ai-sdk/provider-utils@3.0.30':
+    resolution: {integrity: sha512-NCJ9JKow5ENAgEZxzvEvF20thwDiH+hutvzmrUDbloRX0azpJHNst8+7pZIVryYhLM9wgpT5/ShTSjPTFhkxEQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
   '@ai-sdk/provider@2.0.3':
     resolution: {integrity: sha512-h88OPkavHTiN9tMn2l5awAznGB0lXzjcLhgR1/rvjB2zlLprsNxbM2tt6OJsHUxduLC3klq0/eqaSf6fX5XVww==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@2.0.217':
-    resolution: {integrity: sha512-+qhEK9KDpw60P0e0idmEp38AdkYOl9wSRAGeJ+QaYf/C4LtCLpyLte8eZyywIwzwGCEOdzFc7/81UH7cuoLEaA==}
+  '@ai-sdk/react@2.0.218':
+    resolution: {integrity: sha512-P+sX+9kTLGDtuTmTBsLraCOC/tyFCC5Yv1tBCwS5TLu7RJ/aOnDkdj5HtyZOT0+992YTiftlk4Kv3X/hEOR1Zg==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
@@ -2358,8 +2364,8 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  ai@5.0.215:
-    resolution: {integrity: sha512-MEd6mWGvYB42V3UYGiH4QmtyXeoC3u1uDTT9sX1QUGGro2EBD7zMxWLg9cg4wWhEAZK9+eaUSE/S+2pbU3xGrQ==}
+  ai@5.0.216:
+    resolution: {integrity: sha512-W1QgTQS/2itHasAjqx0CVWfRojmnu1V4tJbqaHJf5hXckAZa9IrPDS9VNWBSgZjBhBE9//5M+D4FKdvAGcQBEw==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -2809,8 +2815,8 @@ packages:
   electron-to-chromium@1.5.360:
     resolution: {integrity: sha512-GkcBt6YYAw9SxFWn+xVar4cLVGlXVuswwtRLBozi2zp0GjXs4ZnOrqV4zbXzg35n7w81hCkyJNYicgXlVHAmBA==}
 
-  electron-to-chromium@1.5.392:
-    resolution: {integrity: sha512-1yQq3VQCZRwsnYc67Oc+1fge6Lwtn0hzi6zmEVkB61Zx21kTbwJAW4dFLadl5Rc1tKhG/kSpYXnfiAhu0f0a1g==}
+  electron-to-chromium@1.5.393:
+    resolution: {integrity: sha512-kiDJdIUawuEIcp9XoICKp1iTYDEbgguIPq526N1Q7jIQDeQ3CqoMx71025PI/7E48Ddtw2HuWsVjY7afEgNxmg==}
 
   embla-carousel-react@8.6.0:
     resolution: {integrity: sha512-0/PjqU7geVmo6F734pmPqpyHqiM99olvyecY7zdweCw+6tKEXnrE90pBiBbMMU8s5tICemzpQ3hi5EpxzGW+JA==}
@@ -4946,10 +4952,10 @@ snapshots:
       '@vercel/oidc': 3.1.0
       zod: 4.4.3
 
-  '@ai-sdk/gateway@2.0.114(zod@4.4.3)':
+  '@ai-sdk/gateway@2.0.115(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 2.0.3
-      '@ai-sdk/provider-utils': 3.0.29(zod@4.4.3)
+      '@ai-sdk/provider-utils': 3.0.30(zod@4.4.3)
       '@vercel/oidc': 3.1.0
       zod: 4.4.3
 
@@ -5004,14 +5010,21 @@ snapshots:
       eventsource-parser: 3.1.0
       zod: 4.4.3
 
+  '@ai-sdk/provider-utils@3.0.30(zod@4.4.3)':
+    dependencies:
+      '@ai-sdk/provider': 2.0.3
+      '@standard-schema/spec': 1.1.0
+      eventsource-parser: 3.1.0
+      zod: 4.4.3
+
   '@ai-sdk/provider@2.0.3':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.217(react@19.2.7)(zod@4.4.3)':
+  '@ai-sdk/react@2.0.218(react@19.2.7)(zod@4.4.3)':
     dependencies:
-      '@ai-sdk/provider-utils': 3.0.29(zod@4.4.3)
-      ai: 5.0.215(zod@4.4.3)
+      '@ai-sdk/provider-utils': 3.0.30(zod@4.4.3)
+      ai: 5.0.216(zod@4.4.3)
       react: 19.2.7
       swr: 2.4.2(react@19.2.7)
       throttleit: 2.1.0
@@ -7223,11 +7236,11 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       zod: 4.4.3
 
-  ai@5.0.215(zod@4.4.3):
+  ai@5.0.216(zod@4.4.3):
     dependencies:
-      '@ai-sdk/gateway': 2.0.114(zod@4.4.3)
+      '@ai-sdk/gateway': 2.0.115(zod@4.4.3)
       '@ai-sdk/provider': 2.0.3
-      '@ai-sdk/provider-utils': 3.0.29(zod@4.4.3)
+      '@ai-sdk/provider-utils': 3.0.30(zod@4.4.3)
       '@opentelemetry/api': 1.9.0
       zod: 4.4.3
 
@@ -7307,7 +7320,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.43
       caniuse-lite: 1.0.30001806
-      electron-to-chromium: 1.5.392
+      electron-to-chromium: 1.5.393
       node-releases: 2.0.51
       update-browserslist-db: 1.2.3(browserslist@4.28.6)
 
@@ -7656,7 +7669,7 @@ snapshots:
 
   electron-to-chromium@1.5.360: {}
 
-  electron-to-chromium@1.5.392: {}
+  electron-to-chromium@1.5.393: {}
 
   embla-carousel-react@8.6.0(react@19.2.7):
     dependencies:
