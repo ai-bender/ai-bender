@@ -94,7 +94,7 @@
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
     "lint-staged": "^16.4.0",
-    "postcss": "^8.5.15",
+    "postcss": "^8.5.18",
     "prettier-plugin-tailwindcss": "^0.7.4",
     "serwist": "^9.5.11",
     "simple-git-hooks": "^2.13.1",
