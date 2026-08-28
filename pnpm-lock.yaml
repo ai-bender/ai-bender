@@ -46,7 +46,7 @@ importers:
         version: 13.13.0(react@19.2.8)
       '@openrouter/ai-sdk-provider':
         specifier: ^1.5.4
-        version: 1.5.4(ai@5.0.248(zod@4.4.3))(zod@4.4.3)
+        version: 1.5.4(ai@5.0.249(zod@4.4.3))(zod@4.4.3)
       '@radix-ui/react-avatar':
         specifier: ^1.1.11
         version: 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -85,7 +85,7 @@ importers:
         version: 9.5.11(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(typescript@5.9.3)
       ai:
         specifier: ^5.0.190
-        version: 5.0.248(zod@4.4.3)
+        version: 5.0.249(zod@4.4.3)
       birpc:
         specifier: ^3.0.0
         version: 3.0.0
@@ -2351,12 +2351,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  ai@5.0.248:
-    resolution: {integrity: sha512-60hFxMyVHH/M4cw6ubcpnM9aixmGx1wHnsGG9w8RObzXl8n+b7Jm0nBc4i+C6nns8+aBlArTt+/9d0BojZDk0A==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
   ai@5.0.249:
     resolution: {integrity: sha512-FDiGfFRKRcMMDMhPZ7MEQnCqcXOzDfc1Rlq8TV/2bkbWgwcH0iBmdjQdNfrYH1z3kqgubJdW+L/U2OHIW3mY2w==}
     engines: {node: '>=18'}
@@ -2411,8 +2405,8 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  baseline-browser-mapping@2.11.19:
-    resolution: {integrity: sha512-Grytf1xOxOEMTGRwx6rLGKkTabd4vMg3VrKdj/7joCmV0qgh4QwMMO6xh34YEXQqirAuUdgQGa5orJQQ+69RBw==}
+  baseline-browser-mapping@2.11.20:
+    resolution: {integrity: sha512-H0ulySigv6icDJ1F7SjtdCD6PrhTpdYCmP0CactWy1+ekh0AFd0o1Wn5T8b+hnTmdBx19u9yhL6wvCylXMY7zw==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -5837,10 +5831,10 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
-  '@openrouter/ai-sdk-provider@1.5.4(ai@5.0.248(zod@4.4.3))(zod@4.4.3)':
+  '@openrouter/ai-sdk-provider@1.5.4(ai@5.0.249(zod@4.4.3))(zod@4.4.3)':
     dependencies:
       '@openrouter/sdk': 0.1.27
-      ai: 5.0.248(zod@4.4.3)
+      ai: 5.0.249(zod@4.4.3)
       zod: 4.4.3
 
   '@openrouter/sdk@0.1.27':
@@ -7225,14 +7219,6 @@ snapshots:
 
   acorn@8.16.0: {}
 
-  ai@5.0.248(zod@4.4.3):
-    dependencies:
-      '@ai-sdk/gateway': 2.0.143(zod@4.4.3)
-      '@ai-sdk/provider': 2.0.3
-      '@ai-sdk/provider-utils': 3.0.35(zod@4.4.3)
-      '@opentelemetry/api': 1.9.0
-      zod: 4.4.3
-
   ai@5.0.249(zod@4.4.3):
     dependencies:
       '@ai-sdk/gateway': 2.0.143(zod@4.4.3)
@@ -7280,7 +7266,7 @@ snapshots:
 
   baseline-browser-mapping@2.10.31: {}
 
-  baseline-browser-mapping@2.11.19: {}
+  baseline-browser-mapping@2.11.20: {}
 
   birecord@0.1.1: {}
 
@@ -7315,7 +7301,7 @@ snapshots:
 
   browserslist@4.28.8:
     dependencies:
-      baseline-browser-mapping: 2.11.19
+      baseline-browser-mapping: 2.11.20
       caniuse-lite: 1.0.30001810
       electron-to-chromium: 1.5.415
       node-releases: 2.0.54
