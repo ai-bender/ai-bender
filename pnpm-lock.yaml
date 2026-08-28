@@ -31,7 +31,7 @@ importers:
         version: 2.0.110(zod@4.4.3)
       '@ai-sdk/react':
         specifier: ^2.0.192
-        version: 2.0.251(react@19.2.8)(zod@4.4.3)
+        version: 2.0.252(react@19.2.8)(zod@4.4.3)
       '@ai-sdk/vercel':
         specifier: ^1.0.40
         version: 1.0.40(zod@4.4.3)
@@ -313,8 +313,8 @@ packages:
     resolution: {integrity: sha512-h88OPkavHTiN9tMn2l5awAznGB0lXzjcLhgR1/rvjB2zlLprsNxbM2tt6OJsHUxduLC3klq0/eqaSf6fX5XVww==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@2.0.251':
-    resolution: {integrity: sha512-FbifFSAb/yRAWQxU/AEuO0OQJlNmo6sV5HrcWAjJL0LVn1TDoe5jyQ2LnPCUT4Q1thpd66OVJVCtJMY0wcOeiQ==}
+  '@ai-sdk/react@2.0.252':
+    resolution: {integrity: sha512-IGKdqpPOqTGWmYQIBhs10xUYbNA+hc1QLX1fM9/dKd/IRXhG++kcQsKVONsyVc+NbGU+MVo2xhX1IaiVouWUCg==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
@@ -2357,6 +2357,12 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
+  ai@5.0.249:
+    resolution: {integrity: sha512-FDiGfFRKRcMMDMhPZ7MEQnCqcXOzDfc1Rlq8TV/2bkbWgwcH0iBmdjQdNfrYH1z3kqgubJdW+L/U2OHIW3mY2w==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
   ajv@6.15.0:
     resolution: {integrity: sha512-fgFx7Hfoq60ytK2c7DhnF8jIvzYgOMxfugjLOSMHjLIPgenqa7S7oaagATUq99mV6IYvN2tRmC0wnTYX6iPbMw==}
 
@@ -4002,8 +4008,8 @@ packages:
   node-releases@2.0.44:
     resolution: {integrity: sha512-5WUyunoPMsvvEhS8AxHtRzP+oA8UCkJ7YRxatWKjngndhDGLiqEVAQKWjFAiAiuL8zMRGzGSJxFnLetoa43qGQ==}
 
-  node-releases@2.0.53:
-    resolution: {integrity: sha512-D9UOmYG3UH1V+ENW56t5QXBwJw1YEY18ruVeus89Rw+SyIgjPkCO84bRzO3uNIYosJbNwiabWVn48o3uJLjxFQ==}
+  node-releases@2.0.54:
+    resolution: {integrity: sha512-YHs7BmmcsdAI5Ozuf8JZo6PT0mv2GIWC9vMfvUC3dp65M8hn7Ux8CPL+2oBI7juNuj9d0ndhTcznq2ODBps9cQ==}
     engines: {node: '>=18'}
 
   nth-check@2.1.1:
@@ -4753,8 +4759,8 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
-  update-browserslist-db@1.3.1:
-    resolution: {integrity: sha512-ZZ61DsRsOnakl74HAmp3oSN4aXUmEWXf+i/yv0h7tIBfICc3VdrFErQKUUKPgu3AMsTUMbcongALEN4l6GSUrQ==}
+  update-browserslist-db@1.3.2:
+    resolution: {integrity: sha512-UQ+MSxlhRm1bzjhU+DcuXfjFO1FzNtqhK5+9Yvlp90ItDLk5vT932A0rFu619nf7RVS+Y/VeaUW1jaRDqZ8VJw==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
@@ -5010,10 +5016,10 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.251(react@19.2.8)(zod@4.4.3)':
+  '@ai-sdk/react@2.0.252(react@19.2.8)(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider-utils': 3.0.35(zod@4.4.3)
-      ai: 5.0.248(zod@4.4.3)
+      ai: 5.0.249(zod@4.4.3)
       react: 19.2.8
       swr: 2.5.1(react@19.2.8)
       throttleit: 2.1.0
@@ -7227,6 +7233,14 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       zod: 4.4.3
 
+  ai@5.0.249(zod@4.4.3):
+    dependencies:
+      '@ai-sdk/gateway': 2.0.143(zod@4.4.3)
+      '@ai-sdk/provider': 2.0.3
+      '@ai-sdk/provider-utils': 3.0.35(zod@4.4.3)
+      '@opentelemetry/api': 1.9.0
+      zod: 4.4.3
+
   ajv@6.15.0:
     dependencies:
       fast-deep-equal: 3.1.3
@@ -7304,8 +7318,8 @@ snapshots:
       baseline-browser-mapping: 2.11.19
       caniuse-lite: 1.0.30001810
       electron-to-chromium: 1.5.415
-      node-releases: 2.0.53
-      update-browserslist-db: 1.3.1(browserslist@4.28.8)
+      node-releases: 2.0.54
+      update-browserslist-db: 1.3.2(browserslist@4.28.8)
 
   builtin-modules@5.0.0: {}
 
@@ -9210,7 +9224,7 @@ snapshots:
 
   node-releases@2.0.44: {}
 
-  node-releases@2.0.53: {}
+  node-releases@2.0.54: {}
 
   nth-check@2.1.1:
     dependencies:
@@ -10072,7 +10086,7 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  update-browserslist-db@1.3.1(browserslist@4.28.8):
+  update-browserslist-db@1.3.2(browserslist@4.28.8):
     dependencies:
       browserslist: 4.28.8
       escalade: 3.2.0
